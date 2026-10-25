@@ -1,0 +1,41 @@
+{
+  "fill": {
+    "linear-gradient": [
+      "srgb:0.62000,0.85000,0.98000,1.00000",
+      "srgb:0.70000,0.62000,0.99000,1.00000"
+    ],
+    "orientation": {
+      "start": {
+        "x": 0.5,
+        "y": 0
+      },
+      "stop": {
+        "x": 0.5,
+        "y": 1
+      }
+    }
+  },
+  "groups": [
+    {
+      "name": "Foreground",
+      "layers": [
+        {
+          "name": "foreground",
+          "image-name": "foreground.png",
+          "glass": false
+        }
+      ],
+      "shadow": {
+        "kind": "neutral",
+        "opacity": 0.5
+      },
+      "translucency": {
+        "enabled": false,
+        "value": 0.5
+      }
+    }
+  ],
+  "supported-platforms": {
+    "squares": "shared"
+  }
+}
