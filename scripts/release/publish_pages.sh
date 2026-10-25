@@ -6,6 +6,8 @@
 # gh-pages ブランチが無ければ作る。リポジトリの Settings → Pages で
 # 「Deploy from a branch: gh-pages / (root)」を選んでおくこと。
 set -euo pipefail
+# 注意: macOS の bash 3.2 は UTF-8 ロケールで、変数名の直後の全角文字（「）」など）まで変数名と読む。
+# 日本語の直前の変数は必ず ${VAR} と括弧で囲むこと。
 
 APPCAST="${1:?appcast.xml のパスを指定してください}"
 VERSION="${2:?版を指定してください}"

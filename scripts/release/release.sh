@@ -16,6 +16,8 @@
 #   REPOSITORY           owner/name。既定は GITHUB_REPOSITORY か kkosuge/codex-image-factory
 #   OUT_DIR              出力先。既定は build/release
 set -euo pipefail
+# 注意: macOS の bash 3.2 は UTF-8 ロケールで、変数名の直後の全角文字（「）」など）まで変数名と読む。
+# 日本語の直前の変数は必ず ${VAR} と括弧で囲むこと。
 
 ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
 cd "$ROOT"
@@ -69,7 +71,7 @@ if [[ -n "$TEAM_ID" ]]; then
   )
 fi
 
-step "アーカイブ（$VERSION / ビルド $BUILD_NUMBER）"
+step "アーカイブ（$VERSION / ビルド ${BUILD_NUMBER}）"
 xcodebuild -project CodexImageFactory.xcodeproj -scheme CodexImageFactory \
   -configuration Release -destination 'generic/platform=macOS' \
   -archivePath "$ARCHIVE" -derivedDataPath "$OUT_DIR/DerivedData" \
@@ -124,7 +126,7 @@ if [[ -n "$TEAM_ID" && -n "${NOTARY_KEY_PATH:-}" ]]; then
   STATUS="$(python3 -I -c 'import json,sys; print(json.load(sys.stdin).get("status",""))' <<<"$RESULT")"
   SUBMISSION="$(python3 -I -c 'import json,sys; print(json.load(sys.stdin).get("id",""))' <<<"$RESULT")"
   if [[ "$STATUS" != "Accepted" ]]; then
-    echo "公証が通りませんでした（$STATUS）。ログ:" >&2
+    echo "公証が通りませんでした（${STATUS}）。ログ:" >&2
     xcrun notarytool log "$SUBMISSION" --key "$NOTARY_KEY_PATH" --key-id "$NOTARY_KEY_ID" --issuer "$NOTARY_ISSUER" >&2 || true
     exit 1
   fi
