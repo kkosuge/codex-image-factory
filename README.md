@@ -184,3 +184,8 @@ See [docs/RELEASING.md](docs/RELEASING.md) (Japanese).
 | `CodexImageFactory/AppModel` | UI state, settings, notifications, updates |
 | `CodexImageFactory/UI` | SwiftUI views |
 | `scripts/` | Release and localization scripts |
+
+## License
+
+[MIT](LICENSE). Sparkle is distributed under its own [MIT-style license](https://github.com/sparkle-project/Sparkle/blob/2.x/LICENSE).
+Codex is a trademark of OpenAI; this project is not affiliated with OpenAI.

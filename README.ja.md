@@ -183,3 +183,8 @@ TEST_RUNNER_CIF_REAL_CODEX=1 TEST_RUNNER_CIF_REAL_OUTPUT_DIR=~/Pictures/CodexIma
 
 アプリ名は「Codex Image Factory」、Dock での表示名は「Image Factory」、バンドル ID は `company.kina.CodexImageFactory`。
 Codex を画像生成のエンジンとして使う、OpenAI とは関係のない非公式のツール。Codex は OpenAI の商標。
+
+## ライセンス
+
+[MIT](LICENSE)。Sparkle は Sparkle 自身の [MIT 系のライセンス](https://github.com/sparkle-project/Sparkle/blob/2.x/LICENSE)で配布されている。
+Codex は OpenAI の商標で、このプロジェクトは OpenAI とは関係がない。
