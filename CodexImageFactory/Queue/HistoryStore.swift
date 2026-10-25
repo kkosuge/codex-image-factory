@@ -11,14 +11,14 @@ import Foundation
 ///   呼び出し側は、自分のキューで実行中・待機中でないと確かめた記録にだけ true を渡すこと。
 /// - `delete` が記録ファイルを消すのは、フォルダの run.json がこのアプリの書いたもので、id が消す記録と同じときだけ。
 struct HistoryStore: Sendable {
-    /// `~/Library/Application Support/ImageFactory/history.json`（フォルダの絶対パスの配列）
+    /// `~/Library/Application Support/CodexImageFactory/history.json`（フォルダの絶対パスの配列）
     var indexURL: URL
     /// 出力フォルダを作れなかったジョブの記録の置き場所（`JobExecutor.failedRecordsDirectory` と同じ場所）。
     /// `loadAll` はここも走査する。nil なら走査しない。
     var failedRecordsDirectory: URL?
 
     /// run.json が実行中・待機中のまま残っていたときの要約。
-    static let interruptedSummary = "アプリの終了などで中断されました"
+    static let interruptedSummary = String(localized: "アプリの終了などで中断されました")
 
     /// 失敗記録の置き場所は索引と同じフォルダの `failed/`（既定の場所なら `RunFolder.defaultFailedRecordsDirectory`）。
     init(indexURL: URL) {
@@ -256,7 +256,7 @@ struct HistoryStore: Sendable {
             encoder.outputFormatting = [.prettyPrinted, .withoutEscapingSlashes]
             try encoder.encode(paths).write(to: indexURL, options: .atomic)
         } catch {
-            NSLog("ImageFactory: history.json を保存できませんでした: %@", error.localizedDescription)
+            NSLog("CodexImageFactory: history.json を保存できませんでした: %@", error.localizedDescription)
         }
     }
 
@@ -303,13 +303,13 @@ enum HistoryStoreError: Error, Equatable, LocalizedError {
     var errorDescription: String? {
         switch self {
         case .unreadableRecord(let path):
-            "run.json を読めないので消しませんでした: \(path)"
+            String(localized: "run.json を読めないので消しませんでした: \(path)")
         case .notOurRecord(let path):
-            "このアプリが書いた run.json と確かめられないので消しませんでした: \(path)"
+            String(localized: "このアプリが書いた run.json と確かめられないので消しませんでした: \(path)")
         case .recordMismatch(let path):
-            "フォルダの run.json が別のジョブのものに変わっているので消しませんでした: \(path)"
+            String(localized: "フォルダの run.json が別のジョブのものに変わっているので消しませんでした: \(path)")
         case .stillRunning(let path):
-            "run.json が「実行中」か「待機中」のままなので消しませんでした（別に起動しているアプリが使っている可能性があります）: \(path)"
+            String(localized: "run.json が「実行中」か「待機中」のままなので消しませんでした（別に起動しているアプリが使っている可能性があります）: \(path)")
         }
     }
 }

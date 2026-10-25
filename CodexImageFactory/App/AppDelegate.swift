@@ -10,6 +10,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         ? nil
         : AppModel(dependencies: .live())
 
+    /// 自動アップデート（Sparkle）。配布版で鍵が設定されているときだけ動く。
+    let updates = UpdateController()
+
     private var isShuttingDown = false
 
     /// すでに動いている同じアプリ。2 つ動くと queue.json や履歴、実行中のフォルダを取り合うので、1 つに限る
@@ -30,9 +33,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func applicationDidFinishLaunching(_ notification: Notification) {
-        guard !RuntimeEnvironment.isRunningTests else { return }
+        guard !RuntimeEnvironment.isRunningTests, Self.otherInstance == nil else { return }
         // アプリが前面にあるときも通知を出すため。
         UNUserNotificationCenter.current().delegate = self
+        // 1 日 1 回、裏でアップデートを確認する。見つかればダウンロードし、終了時に入れ替える。
+        updates.start()
     }
 
     func applicationShouldTerminate(_ sender: NSApplication) -> NSApplication.TerminateReply {

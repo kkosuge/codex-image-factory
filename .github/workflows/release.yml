@@ -1,0 +1,137 @@
+# v1.2.3 の形のタグを push すると、配布版を作って GitHub Releases と GitHub Pages（appcast.xml）に公開する。
+# 準備（証明書・鍵・シークレット・Pages の設定）は docs/RELEASING.md を参照。
+name: Release
+
+on:
+  push:
+    tags: ["v*.*", "v*.*.*"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+env:
+  SPARKLE_VERSION: "2.10.0"
+  # https://github.com/sparkle-project/Sparkle/releases/download/2.10.0/Sparkle-2.10.0.tar.xz
+  SPARKLE_SHA256: "c2bf58aa8387266ac179357b1415d6f2635f044da8be41042af32425dae6da0c"
+
+jobs:
+  test:
+    runs-on: macos-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+      - name: Xcode を選ぶ
+        run: ./scripts/ci/select-xcode.sh
+        env:
+          XCODE_VERSION: ${{ vars.XCODE_VERSION }}
+      - name: テスト
+        run: |
+          xcodebuild -project CodexImageFactory.xcodeproj -scheme CodexImageFactory \
+            -destination 'platform=macOS' -derivedDataPath build/DerivedData test
+
+  release:
+    needs: test
+    runs-on: macos-latest
+    timeout-minutes: 60
+    env:
+      TEAM_ID: ${{ vars.APPLE_TEAM_ID }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0 # ビルド番号にコミット数を使う
+
+      - name: Xcode を選ぶ
+        run: ./scripts/ci/select-xcode.sh
+        env:
+          XCODE_VERSION: ${{ vars.XCODE_VERSION }}
+
+      - name: 版を決める
+        id: version
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          if ! [[ "$VERSION" =~ ^[0-9]+(\.[0-9]+){1,2}$ ]]; then
+            echo "タグは v1.2 や v1.2.3 の形にしてください: $GITHUB_REF_NAME" >&2
+            exit 1
+          fi
+          if [[ -z "$TEAM_ID" ]]; then
+            echo "リポジトリの変数 APPLE_TEAM_ID が設定されていません" >&2
+            exit 1
+          fi
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: 署名用の証明書を一時キーチェーンに入れる
+        env:
+          CERT_P12_BASE64: ${{ secrets.MACOS_CERTIFICATE_P12_BASE64 }}
+          CERT_PASSWORD: ${{ secrets.MACOS_CERTIFICATE_PASSWORD }}
+        run: |
+          KEYCHAIN="$RUNNER_TEMP/release.keychain-db"
+          KEYCHAIN_PASSWORD="$(uuidgen)"
+          echo "$CERT_P12_BASE64" | base64 --decode > "$RUNNER_TEMP/cert.p12"
+          security create-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN"
+          security set-keychain-settings -lut 3600 "$KEYCHAIN"
+          security unlock-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN"
+          security import "$RUNNER_TEMP/cert.p12" -P "$CERT_PASSWORD" -A -t cert -f pkcs12 -k "$KEYCHAIN"
+          security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k "$KEYCHAIN_PASSWORD" "$KEYCHAIN" > /dev/null
+          security list-keychains -d user -s "$KEYCHAIN" $(security list-keychains -d user | tr -d '"')
+          rm -f "$RUNNER_TEMP/cert.p12"
+          security find-identity -v -p codesigning "$KEYCHAIN"
+
+      - name: 公証用の API キーと Sparkle の鍵を置く
+        env:
+          NOTARY_KEY_P8_BASE64: ${{ secrets.NOTARY_API_KEY_P8_BASE64 }}
+          SPARKLE_ED_PRIVATE_KEY: ${{ secrets.SPARKLE_ED_PRIVATE_KEY }}
+        run: |
+          umask 077
+          echo "$NOTARY_KEY_P8_BASE64" | base64 --decode > "$RUNNER_TEMP/notary.p8"
+          printf '%s' "$SPARKLE_ED_PRIVATE_KEY" > "$RUNNER_TEMP/sparkle_ed.key"
+
+      - name: Sparkle のツールを取ってくる
+        run: |
+          cd "$RUNNER_TEMP"
+          curl -sSfL -o sparkle.tar.xz "https://github.com/sparkle-project/Sparkle/releases/download/${SPARKLE_VERSION}/Sparkle-${SPARKLE_VERSION}.tar.xz"
+          echo "${SPARKLE_SHA256}  sparkle.tar.xz" | shasum -a 256 -c -
+          mkdir sparkle && tar -xJf sparkle.tar.xz -C sparkle
+          echo "SPARKLE_BIN=$RUNNER_TEMP/sparkle/bin" >> "$GITHUB_ENV"
+
+      - name: 今の appcast.xml を取ってくる
+        run: |
+          if git fetch origin gh-pages:refs/remotes/origin/gh-pages 2>/dev/null && git cat-file -e origin/gh-pages:appcast.xml 2>/dev/null; then
+            git show origin/gh-pages:appcast.xml > "$RUNNER_TEMP/appcast-in.xml"
+            echo "APPCAST_IN=$RUNNER_TEMP/appcast-in.xml" >> "$GITHUB_ENV"
+          else
+            echo "appcast.xml はまだありません（初回）"
+          fi
+
+      - name: ビルド・署名・公証・appcast
+        id: build
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+          SPARKLE_KEY_FILE: ${{ runner.temp }}/sparkle_ed.key
+          NOTARY_KEY_PATH: ${{ runner.temp }}/notary.p8
+          NOTARY_KEY_ID: ${{ secrets.NOTARY_API_KEY_ID }}
+          NOTARY_ISSUER: ${{ secrets.NOTARY_API_ISSUER_ID }}
+          OUT_DIR: ${{ runner.temp }}/release
+        run: ./scripts/release/release.sh
+
+      - name: GitHub Releases に上げる
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" "${{ steps.build.outputs.zip }}" \
+            --title "Codex Image Factory $VERSION" --generate-notes --verify-tag
+
+      - name: appcast.xml を GitHub Pages に公開する
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: ./scripts/release/publish_pages.sh "${{ steps.build.outputs.appcast }}" "$VERSION"
+
+      - name: 後片付け
+        if: always()
+        run: |
+          security delete-keychain "$RUNNER_TEMP/release.keychain-db" 2>/dev/null || true
+          rm -f "$RUNNER_TEMP/notary.p8" "$RUNNER_TEMP/sparkle_ed.key" "$RUNNER_TEMP/cert.p12"

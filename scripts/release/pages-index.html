@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Codex Image Factory</title>
+  <style>
+    :root { color-scheme: light dark; --fg: #1d1d1f; --muted: #6e6e73; --bg: #fff; --accent: #0071e3; }
+    @media (prefers-color-scheme: dark) { :root { --fg: #f5f5f7; --muted: #a1a1a6; --bg: #1d1d1f; --accent: #2997ff; } }
+    body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.7 -apple-system, BlinkMacSystemFont, "Hiragino Sans", sans-serif; }
+    main { max-width: 680px; margin: 0 auto; padding: 56px 16px; }
+    h1 { font-size: 32px; margin: 0 0 8px; }
+    p { margin: 0 0 16px; }
+    .muted { color: var(--muted); font-size: 14px; }
+    a.button { display: inline-block; margin: 8px 0 24px; padding: 10px 18px; border-radius: 8px; background: var(--accent); color: #fff; text-decoration: none; font-weight: 600; }
+    code { font-size: 14px; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Codex Image Factory</h1>
+    <p>Codex CLI（ChatGPT のサブスクリプション）をエンジンにして、画像アセットをキューで続けて生成する macOS アプリ。</p>
+    <a class="button" href="https://github.com/kkosuge/codex-image-factory/releases/latest">最新版をダウンロード</a>
+    <p>macOS 15 以降。Codex CLI をインストールし、<code>codex login</code> でログインしておいてください。</p>
+    <p>アップデートはアプリが自動で確認し、終了したときに入れ替えます。</p>
+    <p class="muted">OpenAI の公式アプリではありません。Codex は OpenAI の商標です。<br>
+      ソースコード: <a href="https://github.com/kkosuge/codex-image-factory">github.com/kkosuge/codex-image-factory</a> ・
+      更新情報: <a href="appcast.xml">appcast.xml</a></p>
+  </main>
+</body>
+</html>

@@ -11,11 +11,11 @@ enum JobStatus: String, Codable, Sendable, CaseIterable {
     /// 画面に出す日本語ラベル。色やアイコンに頼らず、文字で状態を示すために使う。
     var label: String {
         switch self {
-        case .queued: "待機中"
-        case .running: "実行中"
-        case .done: "完了"
-        case .failed: "失敗"
-        case .cancelled: "中止"
+        case .queued: String(localized: "待機中", comment: "ジョブの状態")
+        case .running: String(localized: "実行中", comment: "ジョブの状態")
+        case .done: String(localized: "完了", comment: "ジョブの状態")
+        case .failed: String(localized: "失敗", comment: "ジョブの状態")
+        case .cancelled: String(localized: "job.status.cancelled", defaultValue: "中止", comment: "ジョブの状態（中止された）。ボタンの「中止」とは別のキーにしている")
         }
     }
 
@@ -37,18 +37,18 @@ enum ImageAspect: String, Codable, Sendable, CaseIterable, Identifiable {
 
     var label: String {
         switch self {
-        case .square: "正方形"
-        case .landscape: "横長"
-        case .portrait: "縦長"
+        case .square: String(localized: "正方形", comment: "画像の縦横比のラベル")
+        case .landscape: String(localized: "横長", comment: "画像の縦横比のラベル")
+        case .portrait: String(localized: "縦長", comment: "画像の縦横比のラベル")
         }
     }
 
     /// 固定指示文の `{size}` に入る文言。
     var promptPhrase: String {
         switch self {
-        case .square: "正方形（1:1）"
-        case .landscape: "横長（3:2）"
-        case .portrait: "縦長（2:3）"
+        case .square: String(localized: "正方形（1:1）", comment: "Codex（AI モデル）に送る指示文の {size} に入る文言")
+        case .landscape: String(localized: "横長（3:2）", comment: "Codex（AI モデル）に送る指示文の {size} に入る文言")
+        case .portrait: String(localized: "縦長（2:3）", comment: "Codex（AI モデル）に送る指示文の {size} に入る文言")
         }
     }
 }
@@ -63,17 +63,17 @@ enum ImageBackground: String, Codable, Sendable, CaseIterable, Identifiable {
 
     var label: String {
         switch self {
-        case .transparent: "透明"
-        case .white: "白"
-        case .unspecified: "指定なし"
+        case .transparent: String(localized: "透明", comment: "画像の背景のラベル")
+        case .white: String(localized: "白", comment: "画像の背景のラベル")
+        case .unspecified: String(localized: "指定なし", comment: "画像の背景のラベル")
         }
     }
 
     /// 固定指示文の `{background}` に入る文言。指定なしなら空文字。
     var promptSentence: String {
         switch self {
-        case .transparent: "背景は透明（アルファチャンネル付きの PNG）。"
-        case .white: "背景は白。"
+        case .transparent: String(localized: "背景は透明（アルファチャンネル付きの PNG）。", comment: "Codex（AI モデル）に送る指示文の {background} に入る文")
+        case .white: String(localized: "背景は白。", comment: "Codex（AI モデル）に送る指示文の {background} に入る文")
         case .unspecified: ""
         }
     }

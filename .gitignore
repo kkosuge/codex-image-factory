@@ -4,3 +4,9 @@ DerivedData/
 xcuserdata/
 *.xcuserstate
 *.xcscmblueprint
+
+# 署名・公証の鍵や証明書（GitHub のシークレットに入れるもの）は絶対にコミットしない
+sparkle_private_key*.txt
+*.p12
+*.p8
+AuthKey_*.p8

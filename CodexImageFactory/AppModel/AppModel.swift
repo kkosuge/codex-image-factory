@@ -20,19 +20,25 @@ enum CodexCheckState: Equatable, Sendable {
     var label: String {
         switch self {
         case .idle:
-            "未確認"
+            String(localized: "未確認", comment: "codex のログイン状態: まだ確認していない")
         case .checking:
-            "確認中…"
+            String(localized: "確認中…", comment: "codex のログイン状態: 確認している途中")
         case .missing:
-            "codex が見つかりません"
+            String(localized: "codex が見つかりません")
         case .invalidPath:
-            "指定したパスの codex を実行できません"
+            String(localized: "指定したパスの codex を実行できません")
         case .launchFailed(_, let output):
-            output.isEmpty ? "codex を起動できません" : "codex を起動できません（\(UIDisplayFormat.firstLine(output))）"
+            output.isEmpty
+                ? String(localized: "codex を起動できません")
+                : String(localized: "codex を起動できません（\(UIDisplayFormat.firstLine(output))）")
         case .loggedIn(_, let output):
-            output.isEmpty ? "ログイン済み" : "ログイン済み（\(UIDisplayFormat.firstLine(output))）"
+            output.isEmpty
+                ? String(localized: "ログイン済み")
+                : String(localized: "ログイン済み（\(UIDisplayFormat.firstLine(output))）", comment: "codex のログイン状態。引数は codex の出力の 1 行目")
         case .notLoggedIn(_, let output):
-            output.isEmpty ? "未ログイン" : "未ログイン（\(UIDisplayFormat.firstLine(output))）"
+            output.isEmpty
+                ? String(localized: "未ログイン")
+                : String(localized: "未ログイン（\(UIDisplayFormat.firstLine(output))）", comment: "codex のログイン状態。引数は codex の出力の 1 行目")
         }
     }
 }
@@ -71,7 +77,7 @@ final class AppModelTaskBag: Sendable {
 @MainActor
 @Observable
 final class AppModel {
-    static let drainedNotificationTitle = "キューのジョブがすべて終わりました"
+    static let drainedNotificationTitle = String(localized: "キューのジョブがすべて終わりました")
     /// 終わったジョブのライブログを何件まで覚えておくか。
     static let retainedLiveLogCount = 30
     /// 履歴を一度に何件まで並べるか（「さらに表示」で増やす）。
@@ -79,9 +85,9 @@ final class AppModel {
     /// 固定の指示文の入力が止まってから反映するまでの時間。
     static let templateCommitDelay: Duration = .seconds(1)
     /// 「再開」を押したが、codex の確認などがまだ終わっていないときの文言。
-    static let resumeWaitingText = "codex の場所を確認しています…確認が終わりしだいキューを再開します。"
+    static let resumeWaitingText = String(localized: "codex の場所を確認しています…確認が終わりしだいキューを再開します。")
     /// 設定の入力欄の下に出す説明。
-    static let settingsCommitHint = "Return を押すか、ほかの欄へ移るか、「設定の変更を反映」を押すと反映します。"
+    static let settingsCommitHint = String(localized: "Return を押すか、ほかの欄へ移るか、「設定の変更を反映」を押すと反映します。")
 
     // MARK: - 入力
 
@@ -258,7 +264,7 @@ final class AppModel {
         startupGate = Task { [weak self] in
             guard !saved.isEmpty else { return }
             await q.restore(saved)
-            self?.restoredNotice = "前回の待機中ジョブを \(saved.count) 件復元しました（一時停止中）。「再開」で実行します。"
+            self?.restoredNotice = String(localized: "前回の待機中ジョブを \(saved.count) 件復元しました（一時停止中）。「再開」で実行します。")
         }
 
         recheckCodex(invalidate: false)
@@ -350,8 +356,8 @@ final class AppModel {
 
         if cancellingJobIDs.remove(record.id) != nil {
             queueMessage = record.status == .cancelled
-                ? "「\(record.slug)」を中止しました"
-                : "「\(record.slug)」は中止する前に終わりました（\(record.status.label)）"
+                ? String(localized: "「\(record.slug)」を中止しました")
+                : String(localized: "「\(record.slug)」は中止する前に終わりました（\(record.status.label)）")
         }
 
         switch record.status {
@@ -377,11 +383,9 @@ final class AppModel {
         let counts = drainCounts
         drainCounts = DrainCounts()
         guard !isShuttingDown, counts.total > 0 else { return }
-        var parts = ["完了 \(counts.done) 件", "失敗 \(counts.failed) 件"]
-        if counts.cancelled > 0 {
-            parts.append("中止 \(counts.cancelled) 件")
-        }
-        let body = parts.joined(separator: " · ")
+        let body = counts.cancelled > 0
+            ? String(localized: "完了 \(counts.done) 件 · 失敗 \(counts.failed) 件 · 中止 \(counts.cancelled) 件")
+            : String(localized: "完了 \(counts.done) 件 · 失敗 \(counts.failed) 件")
         let notifier = deps.notifier
         Task { await notifier.post(title: Self.drainedNotificationTitle, body: body) }
     }
@@ -406,7 +410,7 @@ final class AppModel {
             now: deps.now()
         ) else { return }
         clearPromptAfterAdd()
-        inputMessage = "1 件をキューに追加しました（\(job.slug)）"
+        inputMessage = String(localized: "1 件をキューに追加しました（\(job.slug)）")
         await enqueue([job])
     }
 
@@ -424,7 +428,7 @@ final class AppModel {
         )
         guard !jobs.isEmpty else { return }
         clearPromptAfterAdd()
-        inputMessage = "\(jobs.count) 件をキューに追加しました"
+        inputMessage = String(localized: "\(jobs.count) 件をキューに追加しました")
         await enqueue(jobs)
     }
 
@@ -531,11 +535,9 @@ final class AppModel {
         guard isEditing else { return nil }
         let slug = editingJob?.slug ?? editingOriginal?.slug ?? ""
         if editingJob == nil {
-            return "待機中ジョブ「\(slug)」を編集中ですが、このジョブは実行が始まったか削除されたため、変更を反映できません。"
-                + "「変更を保存」を押すと、編集した内容を入力欄に残したまま編集を終えます（「生成（キューに追加）」で新しいジョブとして追加できます）。"
-                + "「編集をやめる」を押すと、編集した内容を捨てて編集前の入力に戻します。"
+            return String(localized: "待機中ジョブ「\(slug)」を編集中ですが、このジョブは実行が始まったか削除されたため、変更を反映できません。「変更を保存」を押すと、編集した内容を入力欄に残したまま編集を終えます（「生成（キューに追加）」で新しいジョブとして追加できます）。「編集をやめる」を押すと、編集した内容を捨てて編集前の入力に戻します。")
         }
-        return "待機中ジョブ「\(slug)」を編集中です。「変更を保存」で反映します。"
+        return String(localized: "待機中ジョブ「\(slug)」を編集中です。「変更を保存」で反映します。")
     }
 
     /// 「変更を保存」を押せるか。ジョブが待機中でなくなっていても押せる（編集した内容を残して編集を終える）。
@@ -562,13 +564,12 @@ final class AppModel {
             // 別のジョブに切り替えると編集した内容が消えるので、保存かやめるのを先にしてもらう。
             if hasUnsavedEdits {
                 let slug = editingJob?.slug ?? editingOriginal?.slug ?? ""
-                inputMessage = "「\(slug)」の編集中です。「変更を保存」か「編集をやめる」を押してから、ほかのジョブを編集してください。"
+                inputMessage = String(localized: "「\(slug)」の編集中です。「変更を保存」か「編集をやめる」を押してから、ほかのジョブを編集してください。")
                 return
             }
         } else if let stash = stashedDraft, !Self.isBlank(stash), !Self.isBlank(draft) {
             // 取っておいた入力といまの入力の両方があると、どちらかを捨てることになるので先に片付けてもらう。
-            inputMessage = "前に取っておいた入力が残っています。いまの入力を「生成（キューに追加）」で追加するか、"
-                + "「編集前の入力に戻す」で入れ替えて片付けてから、もう一度「編集」を押してください。"
+            inputMessage = String(localized: "前に取っておいた入力が残っています。いまの入力を「生成（キューに追加）」で追加するか、「編集前の入力に戻す」で入れ替えて片付けてから、もう一度「編集」を押してください。")
             return
         } else if stashedDraft == nil || !Self.isBlank(draft) {
             // 前に保存できなかったときの「編集前の入力」は、いまの入力が空なら残しておく。
@@ -586,7 +587,7 @@ final class AppModel {
         guard let id = editingJobID else { return }
         guard let base = queued.first(where: { $0.id == id }) ?? editingOriginal,
               let updated = JobFactory.apply(draft, to: base, template: settings.normalized().instructionTemplate) else {
-            inputMessage = "プロンプトが空なので保存できません。"
+            inputMessage = String(localized: "プロンプトが空なので保存できません。")
             return
         }
         var ok = false
@@ -596,13 +597,12 @@ final class AppModel {
         guard editingJobID == id else { return }
         if ok {
             finishEditing(restoreDraft: true)
-            inputMessage = "「\(updated.slug)」の変更を保存しました"
+            inputMessage = String(localized: "「\(updated.slug)」の変更を保存しました")
         } else {
             // 編集した内容は入力欄に残し、新しいジョブとして追加できるようにする。編集前の入力も捨てない。
             finishEditing(restoreDraft: false)
-            inputMessage = "「\(updated.slug)」はすでに実行が始まったか削除されたため、変更を保存できませんでした。"
-                + "編集した内容は入力欄に残してあるので、「生成（キューに追加）」で新しいジョブとして追加できます。"
-                + (stashedDraft != nil ? "編集前の入力は「編集前の入力に戻す」で戻せます。" : "")
+            inputMessage = String(localized: "「\(updated.slug)」はすでに実行が始まったか削除されたため、変更を保存できませんでした。編集した内容は入力欄に残してあるので、「生成（キューに追加）」で新しいジョブとして追加できます。")
+                + (stashedDraft != nil ? String(localized: "編集前の入力は「編集前の入力に戻す」で戻せます。") : "")
         }
     }
 
@@ -610,7 +610,7 @@ final class AppModel {
     func cancelEditing() {
         guard isEditing else { return }
         finishEditing(restoreDraft: true)
-        inputMessage = "編集をやめました"
+        inputMessage = String(localized: "編集をやめました")
     }
 
     /// 「編集前の入力に戻す」。保存できずに編集を終えたあと、取っておいた入力と入れ替える。
@@ -622,8 +622,8 @@ final class AppModel {
         stashedDraft = Self.isBlank(current) ? nil : current
         referenceError = nil
         inputMessage = stashedDraft == nil
-            ? "編集前の入力に戻しました"
-            : "編集前の入力に戻しました。直前の入力は取ってあるので、もう一度「編集前の入力に戻す」を押すと入れ替わります。"
+            ? String(localized: "編集前の入力に戻しました")
+            : String(localized: "編集前の入力に戻しました。直前の入力は取ってあるので、もう一度「編集前の入力に戻す」を押すと入れ替わります。")
     }
 
     /// restoreDraft が false なら、取っておいた編集前の入力は捨てずに残す。
@@ -647,17 +647,19 @@ final class AppModel {
     // MARK: - キューの操作
 
     var queueSummaryText: String {
-        "待機中 \(queued.count) 件 · 実行中 \(running.count) 件 · 並列数 \(settings.normalized().concurrency)"
+        String(localized: "待機中 \(queued.count) 件 · 実行中 \(running.count) 件 · 並列数 \(settings.normalized().concurrency)")
     }
 
     var queueStateText: String {
         if isPaused {
-            return isResumePending ? "状態: 一時停止中（\(Self.resumeWaitingText)）" : "状態: 一時停止中"
+            return isResumePending
+                ? String(localized: "状態: 一時停止中（\(Self.resumeWaitingText)）")
+                : String(localized: "状態: 一時停止中")
         }
         if queued.isEmpty && running.isEmpty {
-            return "状態: 実行中（待機中のジョブはありません）"
+            return String(localized: "状態: 実行中（待機中のジョブはありません）")
         }
-        return "状態: 実行中"
+        return String(localized: "状態: 実行中")
     }
 
     func moveUp(_ id: UUID) async {
@@ -678,9 +680,9 @@ final class AppModel {
             if selectedJobID == id {
                 selectedJobID = nil
             }
-            queueMessage = "待機中ジョブ「\(slug)」を削除しました"
+            queueMessage = String(localized: "待機中ジョブ「\(slug)」を削除しました")
         } else {
-            queueMessage = "「\(slug)」はもう待機中ではないため削除できませんでした"
+            queueMessage = String(localized: "「\(slug)」はもう待機中ではないため削除できませんでした")
         }
     }
 
@@ -689,9 +691,9 @@ final class AppModel {
         let slug = slug(of: id) ?? ""
         if running.contains(where: { $0.id == id }) {
             cancellingJobIDs.insert(id)
-            queueMessage = "「\(slug)」を中止しています…"
+            queueMessage = String(localized: "「\(slug)」を中止しています…")
         } else {
-            queueMessage = "「\(slug)」はもう実行中ではありません"
+            queueMessage = String(localized: "「\(slug)」はもう実行中ではありません")
         }
         await queue.cancel(id)
     }
@@ -701,7 +703,7 @@ final class AppModel {
         resumeRequest += 1
         isResumePending = false
         await queue.pause()
-        queueMessage = "キューを一時停止しました（実行中のジョブはそのまま続きます）"
+        queueMessage = String(localized: "キューを一時停止しました（実行中のジョブはそのまま続きます）")
     }
 
     /// 「再開」。追加と同じく、復元・codex のパス解決・設定の反映が終わるのを待ってから再開する
@@ -721,24 +723,23 @@ final class AppModel {
         default: codexNotFound = false
         }
         guard !codexNotFound else {
-            queueMessage = "codex が見つからないため、キューは一時停止のままです。"
-                + "設定の「codex のパス」を確かめるか「codex を探し直す」を押してから、もう一度「再開」を押してください。"
+            queueMessage = String(localized: "codex が見つからないため、キューは一時停止のままです。設定の「codex のパス」を確かめるか「codex を探し直す」を押してから、もう一度「再開」を押してください。")
             return
         }
         rateLimitNotice = nil
         restoredNotice = nil
         await queue.resume()
-        queueMessage = "キューを再開しました"
+        queueMessage = String(localized: "キューを再開しました")
     }
 
     /// 履歴の「再試行」。入力内容だけを引き継いだ新しいジョブを末尾に足す。
     func retry(_ record: JobRecord) async {
         guard !isActive(record) else {
-            queueMessage = "「\(record.slug)」はまだ実行中か待機中のため、再試行できません。終わってから押してください。"
+            queueMessage = String(localized: "「\(record.slug)」はまだ実行中か待機中のため、再試行できません。終わってから押してください。")
             return
         }
         let job = record.makeRetry(now: deps.now())
-        queueMessage = "「\(record.slug)」を再試行としてキューに追加しました"
+        queueMessage = String(localized: "「\(record.slug)」を再試行としてキューに追加しました")
         await enqueue([job])
     }
 
@@ -870,7 +871,7 @@ final class AppModel {
     /// 実行中のジョブのフォルダは消さない（codex が使っている最中なので）。
     func deleteHistory(_ record: JobRecord) async {
         guard !isActive(record) else {
-            queueMessage = "「\(record.slug)」はまだ実行中か待機中のため、履歴から削除できません。終わってから削除してください。"
+            queueMessage = String(localized: "「\(record.slug)」はまだ実行中か待機中のため、履歴から削除できません。終わってから削除してください。")
             return
         }
         let delete = deps.deleteHistory
@@ -883,9 +884,9 @@ final class AppModel {
             if selectedJobID == record.id {
                 selectedJobID = nil
             }
-            queueMessage = "履歴から「\(record.slug)」を削除しました（画像は残しています）"
+            queueMessage = String(localized: "履歴から「\(record.slug)」を削除しました（画像は残しています）")
         } catch {
-            addNotice("履歴「\(record.slug)」を削除できませんでした: \(error.localizedDescription)")
+            addNotice(String(localized: "履歴「\(record.slug)」を削除できませんでした: \(error.localizedDescription)"))
         }
     }
 
@@ -911,12 +912,12 @@ final class AppModel {
     /// 「コマンドをコピー」。シェルにそのまま貼れる 1 行。
     func copyCommand(_ record: JobRecord) {
         deps.copyToPasteboard(record.commandLine)
-        detailMessage = "コマンドをコピーしました"
+        detailMessage = String(localized: "コマンドをコピーしました")
     }
 
     func copyPath(_ path: String) {
         deps.copyToPasteboard(path)
-        detailMessage = "パスをコピーしました: \(path)"
+        detailMessage = String(localized: "パスをコピーしました: \(path)")
     }
 
     func openImage(_ path: String) {
@@ -935,7 +936,9 @@ final class AppModel {
             deps.revealInFinder([URL(fileURLWithPath: record.outputDir, isDirectory: true)])
             return
         }
-        detailMessage = "フォルダが見つかりません: \(record.outputDir.isEmpty ? "（まだ作られていません）" : record.outputDir)"
+        detailMessage = record.outputDir.isEmpty
+            ? String(localized: "フォルダが見つかりません: （まだ作られていません）")
+            : String(localized: "フォルダが見つかりません: \(record.outputDir)")
     }
 
     /// 「このプロンプトを再利用」。入力欄に戻す（編集中なら編集をやめる）。
@@ -945,7 +948,7 @@ final class AppModel {
         }
         draft = JobFactory.draft(from: record)
         referenceError = nil
-        inputMessage = "「\(record.slug)」のプロンプトを入力欄に戻しました"
+        inputMessage = String(localized: "「\(record.slug)」のプロンプトを入力欄に戻しました")
     }
 
     /// 終わったジョブのログをファイルから読む（メインスレッド外で）。
@@ -1002,15 +1005,15 @@ final class AppModel {
     /// 設定欄に出す「どの codex を使うか」の説明。
     var codexPathStatusText: String {
         if !manualCodexPath.isEmpty {
-            return "入力したパスを使います: \(manualCodexPath)"
+            return String(localized: "入力したパスを使います: \(manualCodexPath)")
         }
         if let detectedCodexPath {
-            return "自動検出したパスを使います: \(detectedCodexPath)"
+            return String(localized: "自動検出したパスを使います: \(detectedCodexPath)")
         }
         if codexCheck == .checking || codexCheck == .idle {
-            return "自動検出しています…"
+            return String(localized: "自動検出しています…")
         }
-        return "自動検出できませんでした。codex の絶対パスを入力してください。"
+        return String(localized: "自動検出できませんでした。codex の絶対パスを入力してください。")
     }
 
     private func settingsDidChange(from old: AppSettings) {
@@ -1070,7 +1073,7 @@ final class AppModel {
         if !value.isEmpty {
             let expanded = Self.expandedPath(value, home: deps.homeDirectory)
             guard expanded.hasPrefix("/"), deps.isExecutableFile(expanded) else {
-                codexPathError = "実行できる codex のファイルがありません: \(expanded)。この値は反映していません（空欄にすると自動検出したパスを使います）。"
+                codexPathError = String(localized: "実行できる codex のファイルがありません: \(expanded)。この値は反映していません（空欄にすると自動検出したパスを使います）。")
                 return false
             }
         }
@@ -1089,7 +1092,7 @@ final class AppModel {
     func commitModelDraft() -> Bool {
         let value = modelDraft.trimmingCharacters(in: .whitespacesAndNewlines)
         if value.contains(where: { $0.isWhitespace || $0.isNewline }) {
-            modelError = "モデル名に空白や改行は入れられません。この値は反映していません。"
+            modelError = String(localized: "モデル名に空白や改行は入れられません。この値は反映していません。")
             return false
         }
         modelError = nil
@@ -1142,7 +1145,7 @@ final class AppModel {
 
     /// 入力欄の下に出す「反映の仕方・状態」の文言。
     static func draftHint(pending: Bool) -> String {
-        pending ? "まだ反映していません。\(settingsCommitHint)" : settingsCommitHint
+        pending ? String(localized: "まだ反映していません。\(settingsCommitHint)") : settingsCommitHint
     }
 
     private func scheduleTemplateCommit() {
@@ -1158,15 +1161,15 @@ final class AppModel {
     static func outputDirectoryProblem(_ value: String, home: URL) -> String? {
         guard !value.isEmpty else { return nil }
         if value.unicodeScalars.contains(where: { CharacterSet.controlCharacters.contains($0) }) {
-            return "改行などの制御文字を含むパスは使えません。この値は反映していません。"
+            return String(localized: "改行などの制御文字を含むパスは使えません。この値は反映していません。")
         }
         let expanded = ReferenceImageValidator.expandTilde(value, home: home)
         guard expanded.hasPrefix("/") else {
-            return "「/」か「~/」から始まるフォルダのパスを入力してください（例: \(AppSettings.defaultOutputDirectory)）。この値は反映していません。"
+            return String(localized: "「/」か「~/」から始まるフォルダのパスを入力してください（例: \(AppSettings.defaultOutputDirectory)）。この値は反映していません。")
         }
         var isDirectory: ObjCBool = false
         if FileManager.default.fileExists(atPath: expanded, isDirectory: &isDirectory), !isDirectory.boolValue {
-            return "フォルダではなくファイルがあります: \(expanded)。この値は反映していません。"
+            return String(localized: "フォルダではなくファイルがあります: \(expanded)。この値は反映していません。")
         }
         return nil
     }
@@ -1207,16 +1210,16 @@ final class AppModel {
             .applyingTransform(.fullwidthToHalfwidth, reverse: false)?
             .trimmingCharacters(in: .whitespaces) ?? storedTimeoutText
         guard let minutes = Double(text), minutes.isFinite, minutes > 0 else {
-            timeoutError = "分を数字で入力してください（例: 10）。"
+            timeoutError = String(localized: "分を数字で入力してください（例: 10）。")
             return
         }
         guard minutes <= 24 * 60 else {
-            timeoutError = "1440 分（24 時間）以下にしてください。"
+            timeoutError = String(localized: "1440 分（24 時間）以下にしてください。")
             return
         }
         let seconds = Int((minutes * 60).rounded())
         guard seconds >= AppSettings.minimumTimeoutSeconds else {
-            timeoutError = "0.5 分（30 秒）以上にしてください。"
+            timeoutError = String(localized: "0.5 分（30 秒）以上にしてください。")
             return
         }
         timeoutError = nil
@@ -1240,7 +1243,7 @@ final class AppModel {
             try deps.createDirectory(url)
             deps.openFile(url)
         } catch {
-            addNotice("出力ディレクトリを開けませんでした: \(url.path)（\(error.localizedDescription)）")
+            addNotice(String(localized: "出力ディレクトリを開けませんでした: \(url.path)（\(error.localizedDescription)）"))
         }
     }
 

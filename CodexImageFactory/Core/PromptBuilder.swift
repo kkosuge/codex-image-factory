@@ -26,7 +26,7 @@ enum PromptBuilder {
     ) -> String {
         let names = expectedFileNames(slug: slug, count: count)
             .map { "`\($0)`" }
-            .joined(separator: "、")
+            .joined(separator: String(localized: "、", comment: "Codex（AI モデル）に送る指示文の {filenames} で、ファイル名を並べる区切り"))
         return template
             .replacingOccurrences(of: "{count}", with: String(max(1, count)))
             .replacingOccurrences(of: "{filenames}", with: names)

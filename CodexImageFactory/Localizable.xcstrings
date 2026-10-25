@@ -1,0 +1,3762 @@
+{
+  "sourceLanguage" : "ja",
+  "strings" : {
+    "%@ %@のジョブ: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ %@ job: %@"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ %2$@のジョブ: %3$@"
+          }
+        }
+      }
+    },
+    "%@ · %@ · %@ · %lld 枚 · %@" : {
+      "comment" : "履歴の 1 行: 状態 · スラッグ · 経過時間 · 画像の枚数 · 開始日時",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ · %@ · %@ · Images: %lld · %@"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ · %2$@ · %3$@ · %4$lld 枚 · %5$@"
+          }
+        }
+      }
+    },
+    "%@: %@ %@" : {
+      "comment" : "行の操作ボタンの AX ラベル: 操作名: 位置 スラッグ",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@: %@ %@"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@: %2$@ %3$@"
+          }
+        }
+      }
+    },
+    "%@: %@ · %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@: %@ · %@"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@: %2$@ · %3$@"
+          }
+        }
+      }
+    },
+    "%lld / %lld 枚" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld / %lld images"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld / %2$lld 枚"
+          }
+        }
+      }
+    },
+    "%lld 件" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld job"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld jobs"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "%lld 件をキューに追加しました" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Added %lld job to the queue"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Added %lld jobs to the queue"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "%lld 枚" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld image"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld images"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "%lld 番目" : {
+      "comment" : "行の位置（1 始まりの順番）",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "#%lld"
+          }
+        }
+      }
+    },
+    "--ephemeral を付ける" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add --ephemeral"
+          }
+        }
+      }
+    },
+    "--ephemeral を付ける（Codex のセッションを残さない）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add --ephemeral (don't keep Codex sessions)"
+          }
+        }
+      }
+    },
+    "-m に渡す名前（空なら既定）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name passed to -m (leave empty for default)"
+          }
+        }
+      }
+    },
+    "/Users/…/ref.png または ~/…" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "/Users/…/ref.png or ~/…"
+          }
+        }
+      }
+    },
+    "0.5 分（30 秒）以上にしてください。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter at least 0.5 minutes (30 seconds)."
+          }
+        }
+      }
+    },
+    "1 件をキューに追加しました（%@）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Added 1 job to the queue (%@)"
+          }
+        }
+      }
+    },
+    "10" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "10"
+          }
+        }
+      }
+    },
+    "1440 分（24 時間）以下にしてください。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter no more than 1440 minutes (24 hours)."
+          }
+        }
+      }
+    },
+    "Codex CLI をインストールするか（例: npm install -g @openai/codex、mise use -g codex）、「設定」の「codex のパス」に codex の絶対パスを入力してください。インストールしたら「再確認」を押してください。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Install the Codex CLI (e.g. npm install -g @openai/codex or mise use -g codex), or enter the absolute path to codex in “codex Path” under “Settings”. After installing, press “Check Again”."
+          }
+        }
+      }
+    },
+    "Codex Image Factory" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Codex Image Factory"
+          }
+        }
+      }
+    },
+    "Codex Image Factory はすでに起動しています。そちらのウィンドウを使ってください。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Codex Image Factory is already running. Use its existing window."
+          }
+        }
+      }
+    },
+    "Codex Image Factory: Codex CLI を使って画像を生成し、フォルダに保存するアプリです。プロンプトを入れて「生成（キューに追加）」を押すだけで、複数のジョブを順に実行します。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Codex Image Factory: an app that generates images with the Codex CLI and saves them to a folder. Just enter a prompt and press “Generate (Add to Queue)”; multiple jobs run in order."
+          }
+        }
+      }
+    },
+    "Codex にログインしていません。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not logged in to Codex."
+          }
+        }
+      }
+    },
+    "Codex に渡したプロンプト" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prompt Sent to Codex"
+          }
+        }
+      }
+    },
+    "Codex に渡すプロンプト（見込み）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prompt to Be Sent to Codex (Preview)"
+          }
+        }
+      }
+    },
+    "Codex のエラー: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Codex error: %@"
+          }
+        }
+      }
+    },
+    "Finder で表示" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show in Finder"
+          }
+        }
+      }
+    },
+    "Finder で表示: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show in Finder: %@"
+          }
+        }
+      }
+    },
+    "Finder で開く" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open in Finder"
+          }
+        }
+      }
+    },
+    "OS のエラー: %@ (errno %d)" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OS error: %@ (errno %d)"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "OS のエラー: %1$@ (errno %2$d)"
+          }
+        }
+      }
+    },
+    "Return を押すか、ほかの欄へ移るか、「設定の変更を反映」を押すと反映します。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Changes apply when you press Return, move to another field, or press “Apply Settings Changes”."
+          }
+        }
+      }
+    },
+    "[%@] 入力トークン %@ / 出力トークン %@" : {
+      "comment" : "ログペイン: 最初の %@ は JSONL のイベント種別（turn.completed など）、残りはトークン数",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "[%@] input tokens: %@ / output tokens: %@"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "[%1$@] 入力トークン %2$@ / 出力トークン %3$@"
+          }
+        }
+      }
+    },
+    "codex exec を実行中です。ログは下に流れます。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Running codex exec. The log streams below."
+          }
+        }
+      }
+    },
+    "codex login status が %lld 秒以内に終わりませんでした。\n%@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "codex login status did not finish within %lld seconds.\n%@"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "codex login status が %1$lld 秒以内に終わりませんでした。\n%2$@"
+          }
+        }
+      }
+    },
+    "codex login status の結果:" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "codex login status output:"
+          }
+        }
+      }
+    },
+    "codex login status を実行できませんでした（%@）。ログインの問題ではありません。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Couldn't run codex login status (%@). This is not a login problem."
+          }
+        }
+      }
+    },
+    "codex がシグナル %d で終了しました" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "codex exited with signal %d"
+          }
+        }
+      }
+    },
+    "codex が終了コード %d で終了しました" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "codex exited with exit code %d"
+          }
+        }
+      }
+    },
+    "codex が見つからないため、キューは一時停止のままです。設定の「codex のパス」を確かめるか「codex を探し直す」を押してから、もう一度「再開」を押してください。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "codex was not found, so the queue remains paused. Check “codex Path” in Settings or press “Find codex Again”, then press “Resume” again."
+          }
+        }
+      }
+    },
+    "codex が見つかりません" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "codex not found"
+          }
+        }
+      }
+    },
+    "codex が見つかりません: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "codex not found: %@"
+          }
+        }
+      }
+    },
+    "codex が見つかりません。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "codex was not found."
+          }
+        }
+      }
+    },
+    "codex が見つかりません。設定で codex のパスを指定してください。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "codex was not found. Specify the codex path in Settings."
+          }
+        }
+      }
+    },
+    "codex が見つかりません（指定したパスを実行できません）。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "codex was not found (the specified path can't be executed)."
+          }
+        }
+      }
+    },
+    "codex のパス" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "codex Path"
+          }
+        }
+      }
+    },
+    "codex のパスが設定されていません。設定の「codex のパス」を確認してください。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The codex path is not set. Check “codex Path” in Settings."
+          }
+        }
+      }
+    },
+    "codex のパスを自動検出（入力欄を空にしてログインシェルで探し直す）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Detect codex Path (clear the field and search again using the login shell)"
+          }
+        }
+      }
+    },
+    "codex のパス（空欄なら自動検出）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "codex Path (leave empty to detect automatically)"
+          }
+        }
+      }
+    },
+    "codex の場所を確認しています…確認が終わりしだいキューを再開します。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Locating codex… The queue will resume as soon as the check finishes."
+          }
+        }
+      }
+    },
+    "codex を探し直してログイン状態を再確認" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Find codex Again and Recheck Login Status"
+          }
+        }
+      }
+    },
+    "codex を探し直す" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Find codex Again"
+          }
+        }
+      }
+    },
+    "codex を探し直す（ログインシェルで探してログイン状態を再確認）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Find codex Again (search using the login shell and recheck login status)"
+          }
+        }
+      }
+    },
+    "codex を起動できません" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Can't launch codex"
+          }
+        }
+      }
+    },
+    "codex を起動できませんでした: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Couldn't launch codex: %@"
+          }
+        }
+      }
+    },
+    "codex を起動できませんでした（%@）。設定で codex のパスを確認してください。\n%@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Couldn't launch codex (%@). Check the codex path in Settings.\n%@"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "codex を起動できませんでした（%1$@）。設定で codex のパスを確認してください。\n%2$@"
+          }
+        }
+      }
+    },
+    "codex を起動できません（%@）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Can't launch codex (%@)"
+          }
+        }
+      }
+    },
+    "codex を起動できません（または応答がありません）。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Can't launch codex (or it isn't responding)."
+          }
+        }
+      }
+    },
+    "job.status.cancelled" : {
+      "comment" : "ジョブの状態（中止された）。ボタンの「中止」とは別のキーにしている",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Canceled"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "中止"
+          }
+        }
+      }
+    },
+    "png / jpg / jpeg / webp" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "png / jpg / jpeg / webp"
+          }
+        }
+      }
+    },
+    "run.json が「実行中」か「待機中」のままなので消しませんでした（別に起動しているアプリが使っている可能性があります）: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Did not delete because run.json is still “Running” or “Queued” (another running instance of the app may be using it): %@"
+          }
+        }
+      }
+    },
+    "run.json を読めないので消しませんでした: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Did not delete because run.json can't be read: %@"
+          }
+        }
+      }
+    },
+    "stderr（末尾）:\n%@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "stderr (tail):\n%@"
+          }
+        }
+      }
+    },
+    "stdout.jsonl / stderr.log から読み込み" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Loaded from stdout.jsonl / stderr.log"
+          }
+        }
+      }
+    },
+    "…（%lld 文字省略）" : {
+      "comment" : "長い文字列を切ったときに末尾に付ける。数字は省略した文字数",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "… (%lld characters omitted)"
+          }
+        }
+      }
+    },
+    "⌘↩ でも「生成（キューに追加）」できます。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You can also press ⌘↩ to “Generate (Add to Queue)”."
+          }
+        }
+      }
+    },
+    "⌘↩ でも保存できます。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You can also press ⌘↩ to save."
+          }
+        }
+      }
+    },
+    "、" : {
+      "comment" : "Codex（AI モデル）に送る指示文の {filenames} で、ファイル名を並べる区切り",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ", "
+          }
+        }
+      }
+    },
+    "「%@」のプロンプトを入力欄に戻しました" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Loaded the prompt from “%@” into the input field"
+          }
+        }
+      }
+    },
+    "「%@」の変更を保存しました" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saved changes to “%@”"
+          }
+        }
+      }
+    },
+    "「%@」の編集中です。「変更を保存」か「編集をやめる」を押してから、ほかのジョブを編集してください。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Editing “%@”. Press “Save Changes” or “Stop Editing” before editing another job."
+          }
+        }
+      }
+    },
+    "「%@」はすでに実行が始まったか削除されたため、変更を保存できませんでした。編集した内容は入力欄に残してあるので、「生成（キューに追加）」で新しいジョブとして追加できます。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Couldn't save changes because “%@” has already started running or was deleted. Your edits are still in the input field, so you can add them as a new job with “Generate (Add to Queue)”."
+          }
+        }
+      }
+    },
+    "「%@」はまだ実行中か待機中のため、再試行できません。終わってから押してください。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Can't retry “%@” because it is still running or queued. Try again after it finishes."
+          }
+        }
+      }
+    },
+    "「%@」はまだ実行中か待機中のため、履歴から削除できません。終わってから削除してください。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Can't delete “%@” from History because it is still running or queued. Delete it after it finishes."
+          }
+        }
+      }
+    },
+    "「%@」はもう実行中ではありません" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“%@” is no longer running"
+          }
+        }
+      }
+    },
+    "「%@」はもう待機中ではないため削除できませんでした" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Couldn't delete “%@” because it is no longer queued"
+          }
+        }
+      }
+    },
+    "「%@」は中止する前に終わりました（%@）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“%@” finished before it could be canceled (%@)"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "「%1$@」は中止する前に終わりました（%2$@）"
+          }
+        }
+      }
+    },
+    "「%@」を中止しています…" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Canceling “%@”…"
+          }
+        }
+      }
+    },
+    "「%@」を中止しました" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Canceled “%@”"
+          }
+        }
+      }
+    },
+    "「%@」を再試行としてキューに追加しました" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Added “%@” to the queue as a retry"
+          }
+        }
+      }
+    },
+    "「/」か「~/」から始まるフォルダのパスを入力してください（例: %@）。この値は反映していません。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter a folder path starting with “/” or “~/” (e.g. %@). This value was not applied."
+          }
+        }
+      }
+    },
+    "「/」か「~」から始まるパスを入力してください: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter a path starting with “/” or “~”: %@"
+          }
+        }
+      }
+    },
+    "「設定」の「codex のパス」を確かめるか、「codex を探し直す」を押してください。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Check “codex Path” in “Settings”, or press “Find codex Again”."
+          }
+        }
+      }
+    },
+    "お知らせを閉じる: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dismiss Notice: %@"
+          }
+        }
+      }
+    },
+    "ここで離すと追加します" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Release to add"
+          }
+        }
+      }
+    },
+    "ここに画像ファイルをドラッグ＆ドロップ" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Drop image files here"
+          }
+        }
+      }
+    },
+    "このアプリが書いた run.json と確かめられないので消しませんでした: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Did not delete because run.json couldn't be confirmed as written by this app: %@"
+          }
+        }
+      }
+    },
+    "このアプリの使い方" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "How to Use This App"
+          }
+        }
+      }
+    },
+    "このウィンドウでは自動アップデートを使いません。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Automatic updates are not used in this window."
+          }
+        }
+      }
+    },
+    "このプロンプトを再利用" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reuse This Prompt"
+          }
+        }
+      }
+    },
+    "このプロンプトを再利用: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reuse This Prompt: %@"
+          }
+        }
+      }
+    },
+    "この記録は次の場所に残しました: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This record was kept at: %@"
+          }
+        }
+      }
+    },
+    "この起動中に受け取ったログ" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Log received since the app launched"
+          }
+        }
+      }
+    },
+    "さらに表示（残り %lld 件）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show More (%lld Remaining)"
+          }
+        }
+      }
+    },
+    "すでに追加されています: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Already added: %@"
+          }
+        }
+      }
+    },
+    "すべて一時停止" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pause All"
+          }
+        }
+      }
+    },
+    "まだ反映していない変更があります" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unapplied changes"
+          }
+        }
+      }
+    },
+    "まだ反映していない変更があります。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "There are changes that haven't been applied yet."
+          }
+        }
+      }
+    },
+    "まだ反映していません。%@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not applied yet. %@"
+          }
+        }
+      }
+    },
+    "まだ反映していません。入力が 1 秒止まるか、ほかの欄へ移ると反映します。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not applied yet. Changes apply after you stop typing for 1 second or move to another field."
+          }
+        }
+      }
+    },
+    "まだ実行していません" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not run yet"
+          }
+        }
+      }
+    },
+    "まだ確認していません。1 日に 1 回、自動で確認します。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not checked yet. Updates are checked automatically once a day."
+          }
+        }
+      }
+    },
+    "まとめて追加（%lld 件）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add Each Paragraph (%lld)"
+          }
+        }
+      }
+    },
+    "アップデート" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Updates"
+          }
+        }
+      }
+    },
+    "アップデートを確認" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Check for Updates"
+          }
+        }
+      }
+    },
+    "アップデートを確認しています…" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Checking for updates…"
+          }
+        }
+      }
+    },
+    "アップデートを確認できませんでした: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Couldn't check for updates: %@"
+          }
+        }
+      }
+    },
+    "アップデート情報の URL が設定されていないため、自動アップデートは使いません。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Automatic updates are disabled because no update feed URL is configured."
+          }
+        }
+      }
+    },
+    "アプリの終了などで中断されました" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Interrupted (for example, the app was quit)"
+          }
+        }
+      }
+    },
+    "エラーの要約" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error Summary"
+          }
+        }
+      }
+    },
+    "キュー" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Queue"
+          }
+        }
+      }
+    },
+    "キューか履歴の行で「詳細」を押すと、ここにプロンプト・コマンド・ログ・生成画像を表示します。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Press “Details” on a Queue or History row to show its prompt, command, log, and generated images here."
+          }
+        }
+      }
+    },
+    "キューのジョブがすべて終わりました" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All jobs in the queue have finished"
+          }
+        }
+      }
+    },
+    "キューを一時停止しました（実行中のジョブはそのまま続きます）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paused the queue (running jobs continue)"
+          }
+        }
+      }
+    },
+    "キューを再開" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resume Queue"
+          }
+        }
+      }
+    },
+    "キューを再開しました" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resumed the queue"
+          }
+        }
+      }
+    },
+    "コマンド" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Command"
+          }
+        }
+      }
+    },
+    "コマンドをコピー" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copy Command"
+          }
+        }
+      }
+    },
+    "コマンドをコピー: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copy Command: %@"
+          }
+        }
+      }
+    },
+    "コマンドをコピーしました" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copied the command"
+          }
+        }
+      }
+    },
+    "サイズ" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Size"
+          }
+        }
+      }
+    },
+    "ジョブ「%@」: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Job “%@”: %@"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "ジョブ「%1$@」: %2$@"
+          }
+        }
+      }
+    },
+    "スタイルプリセット" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Style Preset"
+          }
+        }
+      }
+    },
+    "スタイルプリセット（追加時点）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Style Preset (When Added)"
+          }
+        }
+      }
+    },
+    "スレッド ID" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thread ID"
+          }
+        }
+      }
+    },
+    "タイムアウト（%lld 秒）のため中止しました" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Canceled due to timeout (%lld seconds)"
+          }
+        }
+      }
+    },
+    "タイムアウト（分）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Timeout (minutes)"
+          }
+        }
+      }
+    },
+    "ターミナルで codex login を実行してから「再確認」を押してください。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Run codex login in Terminal, then press “Check Again”."
+          }
+        }
+      }
+    },
+    "テスト中は自動アップデートを使いません。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Automatic updates are disabled during tests."
+          }
+        }
+      }
+    },
+    "バージョン %@ のお知らせがあります（自動ではインストールしません）。GitHub のリリースのページを確認してください。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Version %@ is available (it won't be installed automatically). Check the Releases page on GitHub."
+          }
+        }
+      }
+    },
+    "バージョン %@ は、アプリを終了したときにインストールされます。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Version %@ will be installed when you quit the app."
+          }
+        }
+      }
+    },
+    "バージョン %@ をダウンロードしています…" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Downloading version %@…"
+          }
+        }
+      }
+    },
+    "バージョン %@ をダウンロードしています（%lld%%）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Downloading version %@ (%lld%%)"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "バージョン %1$@ をダウンロードしています（%2$lld%%）"
+          }
+        }
+      }
+    },
+    "バージョン %@ を準備しています…" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Preparing version %@…"
+          }
+        }
+      }
+    },
+    "バージョン %@（ビルド %@）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Version %@ (Build %@)"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "バージョン %1$@（ビルド %2$@）"
+          }
+        }
+      }
+    },
+    "パスをコピー" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copy Path"
+          }
+        }
+      }
+    },
+    "パスをコピーしました: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copied path: %@"
+          }
+        }
+      }
+    },
+    "パスを入力" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter a Path"
+          }
+        }
+      }
+    },
+    "パスを入力してください。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter a path."
+          }
+        }
+      }
+    },
+    "パスを追加" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add Path"
+          }
+        }
+      }
+    },
+    "ファイルが見つかりません: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "File not found: %@"
+          }
+        }
+      }
+    },
+    "ファイルを選択" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose Files…"
+          }
+        }
+      }
+    },
+    "フォルダ" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Folder"
+          }
+        }
+      }
+    },
+    "フォルダがシンボリックリンクなので、リンク先のファイルは消しませんでした: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Did not delete the link's target files because the folder is a symbolic link: %@"
+          }
+        }
+      }
+    },
+    "フォルダが見つかりません: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Folder not found: %@"
+          }
+        }
+      }
+    },
+    "フォルダが見つかりません: （まだ作られていません）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Folder not found: (not created yet)"
+          }
+        }
+      }
+    },
+    "フォルダではないので消しませんでした: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Did not delete because it is not a folder: %@"
+          }
+        }
+      }
+    },
+    "フォルダではなくファイルがあります: %@。この値は反映していません。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This is a file, not a folder: %@. This value was not applied."
+          }
+        }
+      }
+    },
+    "フォルダの run.json が別のジョブのものに変わっているので消しませんでした: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Did not delete because the folder's run.json now belongs to a different job: %@"
+          }
+        }
+      }
+    },
+    "フォルダは実行できません: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A folder can't be executed: %@"
+          }
+        }
+      }
+    },
+    "フォルダは追加できません。画像ファイルを指定してください: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Folders can't be added. Specify image files: %@"
+          }
+        }
+      }
+    },
+    "フォルダを調べられないので消しませんでした: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Did not delete because the folder couldn't be inspected: %@"
+          }
+        }
+      }
+    },
+    "フォルダを選択" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose Folder…"
+          }
+        }
+      }
+    },
+    "プロンプト" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prompt"
+          }
+        }
+      }
+    },
+    "プロンプトが空なので保存できません。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Can't save because the prompt is empty."
+          }
+        }
+      }
+    },
+    "プロンプトの先頭に付ける定型文です。空なら付けません。起動し直しても残ります。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Boilerplate text added to the beginning of the prompt. Leave empty to add nothing. It is kept after relaunching."
+          }
+        }
+      }
+    },
+    "プロンプトの最後に付けます。置き換え: {count}（枚数）、{filenames}（`slug-01.png`、… の並び）、{slug}（スラッグ）、{size}（正方形（1:1）など）、{background}（背景の文。指定なしなら空）。" : {
+      "comment" : "{count} {filenames} {slug} {size} {background} are template placeholders typed by the user; keep them unchanged.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Appended to the end of the prompt. Placeholders: {count} (number of images), {filenames} (list such as `slug-01.png`, …), {slug} (slug), {size} (e.g. square (1:1)), {background} (background sentence; empty when Background is “Any”)."
+          }
+        }
+      }
+    },
+    "モデル" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Model"
+          }
+        }
+      }
+    },
+    "モデル名に空白や改行は入れられません。この値は反映していません。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Model names can't contain spaces or line breaks. This value was not applied."
+          }
+        }
+      }
+    },
+    "モデル（-m、空なら既定）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Model (-m; leave empty for default)"
+          }
+        }
+      }
+    },
+    "リアルタイム表示中" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Live"
+          }
+        }
+      }
+    },
+    "レート制限のお知らせを閉じる" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dismiss Rate Limit Notice"
+          }
+        }
+      }
+    },
+    "レート制限らしきエラーを検出したため、キューを一時停止しました。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paused the queue because an error that looks like a rate limit was detected."
+          }
+        }
+      }
+    },
+    "ログ" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Log"
+          }
+        }
+      }
+    },
+    "ログの表示形式" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Log Format"
+          }
+        }
+      }
+    },
+    "ログの表示形式（整形 / 生データ）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Log Format (Formatted / Raw)"
+          }
+        }
+      }
+    },
+    "ログを読み込んでいます…" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Loading log…"
+          }
+        }
+      }
+    },
+    "ログインはアプリでは扱いません。未ログインならターミナルで codex login を実行してください。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This app doesn't handle login. If you're not logged in, run codex login in Terminal."
+          }
+        }
+      }
+    },
+    "ログイン済み" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Logged in"
+          }
+        }
+      }
+    },
+    "ログイン済み（%@）" : {
+      "comment" : "codex のログイン状態。引数は codex の出力の 1 行目",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Logged in (%@)"
+          }
+        }
+      }
+    },
+    "ログイン状態" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Login Status"
+          }
+        }
+      }
+    },
+    "ログイン状態を再確認" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Check Login Again"
+          }
+        }
+      }
+    },
+    "上へ" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Move Up"
+          }
+        }
+      }
+    },
+    "下へ" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Move Down"
+          }
+        }
+      }
+    },
+    "並列数" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Concurrency"
+          }
+        }
+      }
+    },
+    "並列数（1〜8）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Concurrency (1–8)"
+          }
+        }
+      }
+    },
+    "中央の「キュー」で、並列数の範囲で順に実行されます（1 枚およそ 1 分）。各行には「実行中 · スラッグ · 経過時間」のように状態が文字で出ます。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jobs run in order in the “Queue” in the center, up to the concurrency limit (about 1 minute per image). Each row shows its status as text, such as “Running · slug · elapsed time”."
+          }
+        }
+      }
+    },
+    "中止" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        }
+      }
+    },
+    "中止: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel: %@"
+          }
+        }
+      }
+    },
+    "中止しました" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Canceled"
+          }
+        }
+      }
+    },
+    "今すぐ再起動してアップデート" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restart and Update Now"
+          }
+        }
+      }
+    },
+    "今すぐ再起動してアップデート（実行中のジョブが無いときだけ）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restart and Update Now (only when no jobs are running)"
+          }
+        }
+      }
+    },
+    "作れなかった場所: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Location that couldn't be created: %@"
+          }
+        }
+      }
+    },
+    "作業フォルダがありません: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Working folder doesn't exist: %@"
+          }
+        }
+      }
+    },
+    "使い方の説明を表示" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show Usage Guide"
+          }
+        }
+      }
+    },
+    "使い方の説明を隠す" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hide Usage Guide"
+          }
+        }
+      }
+    },
+    "使い方を表示" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show Guide"
+          }
+        }
+      }
+    },
+    "使い方を隠す" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hide Guide"
+          }
+        }
+      }
+    },
+    "保存先:" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saved to:"
+          }
+        }
+      }
+    },
+    "保存先: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saved to: %@"
+          }
+        }
+      }
+    },
+    "入力" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Input"
+          }
+        }
+      }
+    },
+    "入力が 1 秒止まるか、ほかの欄へ移ると反映します。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Changes apply after you stop typing for 1 second or move to another field."
+          }
+        }
+      }
+    },
+    "入力したパスを使います: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Using the entered path: %@"
+          }
+        }
+      }
+    },
+    "入力したパスを参照画像に追加" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add Entered Path to Reference Images"
+          }
+        }
+      }
+    },
+    "再確認" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Check Again"
+          }
+        }
+      }
+    },
+    "再試行" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Retry"
+          }
+        }
+      }
+    },
+    "再試行: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Retry: %@"
+          }
+        }
+      }
+    },
+    "再開" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resume"
+          }
+        }
+      }
+    },
+    "出力ディレクトリ" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Output Folder"
+          }
+        }
+      }
+    },
+    "出力ディレクトリのフォルダを選択" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose Output Folder"
+          }
+        }
+      }
+    },
+    "出力ディレクトリの設定と、ドライブがつながっているか・書き込めるかを確認してから「再試行」してください。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Check the Output Folder setting and make sure the drive is connected and writable, then press “Retry”."
+          }
+        }
+      }
+    },
+    "出力ディレクトリを Finder で開く" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open Output Folder in Finder"
+          }
+        }
+      }
+    },
+    "出力ディレクトリを開けませんでした: %@（%@）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Couldn't open the output folder: %@ (%@)"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "出力ディレクトリを開けませんでした: %1$@（%2$@）"
+          }
+        }
+      }
+    },
+    "出力ディレクトリ・codex のパス・並列数・タイムアウトなどは、この列のいちばん上の「設定を表示」で開きます。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "To change the output folder, codex path, concurrency, timeout, and more, press “Show Settings” at the top of this column."
+          }
+        }
+      }
+    },
+    "出力ファイル名（スラッグ）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "File Name (Slug)"
+          }
+        }
+      }
+    },
+    "出力フォルダを作れませんでした: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Couldn't create the output folder: %@"
+          }
+        }
+      }
+    },
+    "分を数字で入力してください（例: 10）。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter the number of minutes (e.g. 10)."
+          }
+        }
+      }
+    },
+    "削除" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete"
+          }
+        }
+      }
+    },
+    "削除: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete: %@"
+          }
+        }
+      }
+    },
+    "前に取っておいた入力が残っています。いまの入力を「生成（キューに追加）」で追加するか、「編集前の入力に戻す」で入れ替えて片付けてから、もう一度「編集」を押してください。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Previously saved input is still stored. Add the current input with “Generate (Add to Queue)”, or swap it back in with “Restore Previous Input” to clear it, then press “Edit” again."
+          }
+        }
+      }
+    },
+    "前回の待機中ジョブを %lld 件復元しました（一時停止中）。「再開」で実行します。" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Restored %lld queued job from the last session (paused). Press “Resume” to run it."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Restored %lld queued jobs from the last session (paused). Press “Resume” to run them."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "参照画像" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reference Images"
+          }
+        }
+      }
+    },
+    "参照画像が見つかりません:\n%@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reference image not found:\n%@"
+          }
+        }
+      }
+    },
+    "参照画像のドロップ欄。画像ファイルをここにドラッグ＆ドロップすると追加します" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reference image drop area. Drag and drop image files here to add them"
+          }
+        }
+      }
+    },
+    "参照画像のパス" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reference Image Path"
+          }
+        }
+      }
+    },
+    "参照画像のパスを入力" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter Reference Image Path"
+          }
+        }
+      }
+    },
+    "参照画像のファイルを選択" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose Reference Image Files"
+          }
+        }
+      }
+    },
+    "参照画像はありません。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No reference images."
+          }
+        }
+      }
+    },
+    "参照画像は最大 %lld 枚までです。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You can add up to %lld reference images."
+          }
+        }
+      }
+    },
+    "参照画像を削除: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete Reference Image: %@"
+          }
+        }
+      }
+    },
+    "参照画像を選んでください（png / jpg / jpeg / webp、最大 %lld 枚）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose reference images (png / jpg / jpeg / webp, up to %lld)"
+          }
+        }
+      }
+    },
+    "参照画像（最大 %lld 枚）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reference Images (Up to %lld)"
+          }
+        }
+      }
+    },
+    "古い %lld 行は省略し、最後の %lld 行を表示しています。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Showing the last %2$lld lines (older lines omitted: %1$lld)."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "古い %1$lld 行は省略し、最後の %2$lld 行を表示しています。"
+          }
+        }
+      }
+    },
+    "固定の指示文" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fixed Instructions"
+          }
+        }
+      }
+    },
+    "固定の指示文を既定に戻す" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reset Fixed Instructions to Default"
+          }
+        }
+      }
+    },
+    "変更はすべて反映済みです" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All changes applied"
+          }
+        }
+      }
+    },
+    "変更を保存" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save Changes"
+          }
+        }
+      }
+    },
+    "変更を保存（編集中の待機中ジョブ）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save Changes (Queued Job Being Edited)"
+          }
+        }
+      }
+    },
+    "失敗" : {
+      "comment" : "ジョブの状態",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Failed"
+          }
+        }
+      }
+    },
+    "完了" : {
+      "comment" : "ジョブの状態",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Done"
+          }
+        }
+      }
+    },
+    "完了 %lld 件 · 失敗 %lld 件" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Done: %lld · Failed: %lld"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "完了 %1$lld 件 · 失敗 %2$lld 件"
+          }
+        }
+      }
+    },
+    "完了 %lld 件 · 失敗 %lld 件 · 中止 %lld 件" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Done: %lld · Failed: %lld · Canceled: %lld"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "完了 %1$lld 件 · 失敗 %2$lld 件 · 中止 %3$lld 件"
+          }
+        }
+      }
+    },
+    "実行が始まると、ここに stdout（JSONL）と stderr が流れます。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "When the run starts, stdout (JSONL) and stderr stream here."
+          }
+        }
+      }
+    },
+    "実行が終わると、ここに生成画像とパスを表示します。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "When the run finishes, the generated images and their paths appear here."
+          }
+        }
+      }
+    },
+    "実行が途中で終わりました" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The run ended before finishing"
+          }
+        }
+      }
+    },
+    "実行できる codex のファイルがありません: %@。この値は反映していません（空欄にすると自動検出したパスを使います）。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No executable codex file at: %@. This value was not applied (leave the field empty to use the detected path)."
+          }
+        }
+      }
+    },
+    "実行ファイルが見つかりません: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Executable not found: %@"
+          }
+        }
+      }
+    },
+    "実行中" : {
+      "comment" : "ジョブの状態",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Running"
+          }
+        }
+      }
+    },
+    "実行中: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Running: %@"
+          }
+        }
+      }
+    },
+    "実行中: %@ %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Running: %@ %@"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "実行中: %1$@ %2$@"
+          }
+        }
+      }
+    },
+    "実行中のジョブのフォルダなので消しませんでした: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Did not delete because the folder belongs to a running job: %@"
+          }
+        }
+      }
+    },
+    "実行中や待機中のジョブがあるので、今すぐの再起動はできません。終わったら押すか、アプリを終了したときに入れ替わります。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Can't restart now because jobs are running or queued. Press it after they finish, or the update will be installed when you quit the app."
+          }
+        }
+      }
+    },
+    "実行権限がありません: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No execute permission: %@"
+          }
+        }
+      }
+    },
+    "履歴" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "History"
+          }
+        }
+      }
+    },
+    "履歴 %@" : {
+      "comment" : "履歴の行の位置。引数は「3 番目」などの順番",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "History %@"
+          }
+        }
+      }
+    },
+    "履歴「%@」を削除できませんでした: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Couldn't delete History item “%@”: %@"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "履歴「%1$@」を削除できませんでした: %2$@"
+          }
+        }
+      }
+    },
+    "履歴から「%@」を削除しました（画像は残しています）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deleted “%@” from History (images were kept)"
+          }
+        }
+      }
+    },
+    "履歴から削除（画像は残す）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete from History (Keep Images)"
+          }
+        }
+      }
+    },
+    "履歴はまだありません。終わったジョブが新しい順に並びます。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No history yet. Finished jobs are listed here, newest first."
+          }
+        }
+      }
+    },
+    "履歴をさらに表示（残り %lld 件）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show More History (%lld Remaining)"
+          }
+        }
+      }
+    },
+    "履歴を再読み込み" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reload History"
+          }
+        }
+      }
+    },
+    "履歴を読み込んでいます…" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Loading history…"
+          }
+        }
+      }
+    },
+    "左の「プロンプト」に作りたい画像の説明を書き、「生成（キューに追加）」を押します。空行で区切って複数書き「まとめて追加」を押すと、1 段落ずつ別のジョブになります。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Describe the image you want in “Prompt” on the left, then press “Generate (Add to Queue)”. To add several at once, separate them with blank lines and press “Add Each Paragraph”; each paragraph becomes its own job."
+          }
+        }
+      }
+    },
+    "待機中" : {
+      "comment" : "ジョブの状態",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Queued"
+          }
+        }
+      }
+    },
+    "待機中 %lld 件 · 実行中 %lld 件 · 並列数 %lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Queued: %lld · Running: %lld · Concurrency: %lld"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "待機中 %1$lld 件 · 実行中 %2$lld 件 · 並列数 %3$lld"
+          }
+        }
+      }
+    },
+    "待機中です。実行が始まるとログが下に流れます。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Queued. The log will stream below when the run starts."
+          }
+        }
+      }
+    },
+    "待機中ジョブ「%@」を削除しました" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deleted queued job “%@”"
+          }
+        }
+      }
+    },
+    "待機中ジョブ「%@」を編集中です。「変更を保存」で反映します。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Editing queued job “%@”. Press “Save Changes” to apply."
+          }
+        }
+      }
+    },
+    "待機中ジョブ「%@」を編集中ですが、このジョブは実行が始まったか削除されたため、変更を反映できません。「変更を保存」を押すと、編集した内容を入力欄に残したまま編集を終えます（「生成（キューに追加）」で新しいジョブとして追加できます）。「編集をやめる」を押すと、編集した内容を捨てて編集前の入力に戻します。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Editing queued job “%@”, but this job has already started running or was deleted, so the changes can't be applied. Press “Save Changes” to stop editing and keep your edits in the input field (you can add them as a new job with “Generate (Add to Queue)”). Press “Stop Editing” to discard your edits and restore the previous input."
+          }
+        }
+      }
+    },
+    "待機中・実行中のジョブはありません。左の「生成（キューに追加）」で追加すると、ここに並んで自動で実行されます。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No queued or running jobs. Add one with “Generate (Add to Queue)” on the left; it will appear here and run automatically."
+          }
+        }
+      }
+    },
+    "復元のお知らせを閉じる" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dismiss Restored Jobs Notice"
+          }
+        }
+      }
+    },
+    "指定したパス: %@\n「設定」の「codex のパス」を直すか、空欄にして自動検出を使ってください。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Specified path: %@\nFix “codex Path” in “Settings”, or leave it empty to use automatic detection."
+          }
+        }
+      }
+    },
+    "指定したパスの codex を実行できません" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Can't run codex at the specified path"
+          }
+        }
+      }
+    },
+    "指定なし" : {
+      "comment" : "画像の背景のラベル",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Any"
+          }
+        }
+      }
+    },
+    "推論の強さ" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reasoning Effort"
+          }
+        }
+      }
+    },
+    "改行などの制御文字を含むパスは使えません。この値は反映していません。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paths containing control characters such as line breaks can't be used. This value was not applied."
+          }
+        }
+      }
+    },
+    "整形" : {
+      "comment" : "ログ表示形式: 整形したログ",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Formatted"
+          }
+        }
+      }
+    },
+    "新しい版を自動でダウンロードし、アプリを終了したときにインストールする" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Automatically download new versions and install them when the app quits"
+          }
+        }
+      }
+    },
+    "既定" : {
+      "comment" : "推論の強さ: codex の既定値を使う",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Default"
+          }
+        }
+      }
+    },
+    "既定に戻す" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reset to Default"
+          }
+        }
+      }
+    },
+    "時間をおいてから「再開」を押してください（自動では再試行しません）。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wait a while, then press “Resume” (it won't retry automatically)."
+          }
+        }
+      }
+    },
+    "最後に確認した日時: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Last checked: %@"
+          }
+        }
+      }
+    },
+    "最新版です（%@ に確認）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Up to date (checked %@)"
+          }
+        }
+      }
+    },
+    "最終メッセージ" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Final Message"
+          }
+        }
+      }
+    },
+    "未ログイン" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not logged in"
+          }
+        }
+      }
+    },
+    "未ログイン（%@）" : {
+      "comment" : "codex のログイン状態。引数は codex の出力の 1 行目",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not logged in (%@)"
+          }
+        }
+      }
+    },
+    "未確認" : {
+      "comment" : "codex のログイン状態: まだ確認していない",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not checked"
+          }
+        }
+      }
+    },
+    "枚数" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Count"
+          }
+        }
+      }
+    },
+    "横長" : {
+      "comment" : "画像の縦横比のラベル",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Landscape"
+          }
+        }
+      }
+    },
+    "横長（3:2）" : {
+      "comment" : "Codex（AI モデル）に送る指示文の {size} に入る文言",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "landscape (3:2)"
+          }
+        }
+      }
+    },
+    "正方形" : {
+      "comment" : "画像の縦横比のラベル",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Square"
+          }
+        }
+      }
+    },
+    "正方形（1:1）" : {
+      "comment" : "Codex（AI モデル）に送る指示文の {size} に入る文言",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "square (1:1)"
+          }
+        }
+      }
+    },
+    "状態: 一時停止中" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Status: Paused"
+          }
+        }
+      }
+    },
+    "状態: 一時停止中（%@）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Status: Paused (%@)"
+          }
+        }
+      }
+    },
+    "状態: 実行中" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Status: Running"
+          }
+        }
+      }
+    },
+    "状態: 実行中（待機中のジョブはありません）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Status: Running (no queued jobs)"
+          }
+        }
+      }
+    },
+    "現在の値: %lld 秒" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Current value: %lld seconds"
+          }
+        }
+      }
+    },
+    "理由: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reason: %@"
+          }
+        }
+      }
+    },
+    "生データ" : {
+      "comment" : "ログ表示形式: 加工していない生のログ",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Raw"
+          }
+        }
+      }
+    },
+    "生成画像 %lld のサムネイル: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thumbnail of generated image %lld: %@"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "生成画像 %1$lld のサムネイル: %2$@"
+          }
+        }
+      }
+    },
+    "生成画像はありません。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No generated images."
+          }
+        }
+      }
+    },
+    "生成画像を保存するフォルダを選んでください" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose a folder to save generated images in"
+          }
+        }
+      }
+    },
+    "生成画像（%lld 枚）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Generated Images (%lld)"
+          }
+        }
+      }
+    },
+    "生成（キューに追加）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Generate (Add to Queue)"
+          }
+        }
+      }
+    },
+    "画像のパスをコピー: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copy Image Path: %@"
+          }
+        }
+      }
+    },
+    "画像を読み込めませんでした（移動・削除された可能性があります）。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Couldn't load the image (it may have been moved or deleted)."
+          }
+        }
+      }
+    },
+    "画像を開く: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open Image: %@"
+          }
+        }
+      }
+    },
+    "画像ファイルが見つかりませんでした" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No image files were found"
+          }
+        }
+      }
+    },
+    "画像ファイル（png / jpg / jpeg / webp）だけを追加できます: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Only image files (png / jpg / jpeg / webp) can be added: %@"
+          }
+        }
+      }
+    },
+    "画像生成ツールを使って {count} 枚生成し、PNG としてカレントディレクトリに {filenames} の名前で保存すること。サイズは{size}。{background}ファイルを保存したら、最後に保存したファイル名を 1 行 1 ファイルで列挙すること。コードの変更やその他のファイル作成はしないこと。" : {
+      "comment" : "Codex（AI モデル）に送る指示文の既定値。{count} {filenames} {size} {background} は置き換え用の目印なので訳さずそのまま残す。{size} には縦横比の文言、{background} には背景の文（空のこともある）が入る。",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Use the image generation tool to create {count} image(s) and save them as PNG files in the current directory with the names {filenames}. Make the images {size}.{background} After saving the files, finish by listing the saved file names, one file per line. Do not change any code or create any other files."
+          }
+        }
+      }
+    },
+    "白" : {
+      "comment" : "画像の背景のラベル",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "White"
+          }
+        }
+      }
+    },
+    "確認は 1 日に 1 回、自動で行います。アップデートのためのウィンドウは出しません。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Updates are checked automatically once a day. No window is shown for updates."
+          }
+        }
+      }
+    },
+    "確認中…" : {
+      "comment" : "codex のログイン状態: 確認している途中",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Checking…"
+          }
+        }
+      }
+    },
+    "空なら日時（例: 20261024-153012）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leave empty to use the date and time (e.g. 20261024-153012)"
+          }
+        }
+      }
+    },
+    "空にすると既定の文を使います。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leave empty to use the default text."
+          }
+        }
+      }
+    },
+    "空欄なら自動検出したパスを使います" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leave empty to use the detected path"
+          }
+        }
+      }
+    },
+    "空行で区切って複数書くと、「まとめて追加」でそれぞれ 1 件のジョブになります。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Write several prompts separated by blank lines, and “Add Each Paragraph” turns each one into a separate job."
+          }
+        }
+      }
+    },
+    "終わったジョブは下の「履歴」に移ります。行の「詳細」を押すと、右に生成画像のファイルのパスが文字で出ます（「パスをコピー」でコピーできます）。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Finished jobs move to “History” below. Press “Details” on a row to show the generated image file paths as text on the right (copy them with “Copy Path”)."
+          }
+        }
+      }
+    },
+    "終了" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Finished"
+          }
+        }
+      }
+    },
+    "終了コード" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exit Code"
+          }
+        }
+      }
+    },
+    "編集" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit"
+          }
+        }
+      }
+    },
+    "編集: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit: %@"
+          }
+        }
+      }
+    },
+    "編集をやめました" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stopped editing"
+          }
+        }
+      }
+    },
+    "編集をやめる" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stop Editing"
+          }
+        }
+      }
+    },
+    "編集中" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Editing"
+          }
+        }
+      }
+    },
+    "編集前の入力に戻しました" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restored the previous input"
+          }
+        }
+      }
+    },
+    "編集前の入力に戻しました。直前の入力は取ってあるので、もう一度「編集前の入力に戻す」を押すと入れ替わります。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restored the previous input. The input you just had is kept, so pressing “Restore Previous Input” again swaps them back."
+          }
+        }
+      }
+    },
+    "編集前の入力に戻す" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restore Previous Input"
+          }
+        }
+      }
+    },
+    "編集前の入力に戻す（いまの入力は消えます）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restore Previous Input (current input will be lost)"
+          }
+        }
+      }
+    },
+    "編集前の入力は「編集前の入力に戻す」で戻せます。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You can get the previous input back with “Restore Previous Input”."
+          }
+        }
+      }
+    },
+    "縦長" : {
+      "comment" : "画像の縦横比のラベル",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Portrait"
+          }
+        }
+      }
+    },
+    "縦長（2:3）" : {
+      "comment" : "Codex（AI モデル）に送る指示文の {size} に入る文言",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "portrait (2:3)"
+          }
+        }
+      }
+    },
+    "署名を確かめる鍵が設定されていないため、自動アップデートは使いません。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Automatic updates are disabled because no signature verification key is configured."
+          }
+        }
+      }
+    },
+    "背景" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Background"
+          }
+        }
+      }
+    },
+    "背景は白。" : {
+      "comment" : "Codex（AI モデル）に送る指示文の {background} に入る文",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " Use a white background."
+          }
+        }
+      }
+    },
+    "背景は透明（アルファチャンネル付きの PNG）。" : {
+      "comment" : "Codex（AI モデル）に送る指示文の {background} に入る文",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " Use a transparent background (PNG with an alpha channel)."
+          }
+        }
+      }
+    },
+    "自動アップデートを準備しています…" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Preparing automatic updates…"
+          }
+        }
+      }
+    },
+    "自動検出" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Detect"
+          }
+        }
+      }
+    },
+    "自動検出したパスを使います: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Using the detected path: %@"
+          }
+        }
+      }
+    },
+    "自動検出しています…" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Detecting…"
+          }
+        }
+      }
+    },
+    "自動検出できませんでした。codex の絶対パスを入力してください。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Couldn't detect automatically. Enter the absolute path to codex."
+          }
+        }
+      }
+    },
+    "設定" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Settings"
+          }
+        }
+      }
+    },
+    "設定: 表示中（この列のいちばん下）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Settings: Shown (at the bottom of this column)"
+          }
+        }
+      }
+    },
+    "設定: 隠しています" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Settings: Hidden"
+          }
+        }
+      }
+    },
+    "設定の変更を反映" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apply Settings Changes"
+          }
+        }
+      }
+    },
+    "設定の変更を反映（出力ディレクトリ・codex のパス・モデル・固定の指示文）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apply Settings Changes (Output Folder, codex Path, Model, Fixed Instructions)"
+          }
+        }
+      }
+    },
+    "設定を表示" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show Settings"
+          }
+        }
+      }
+    },
+    "設定を隠す" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hide Settings"
+          }
+        }
+      }
+    },
+    "詳細" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Details"
+          }
+        }
+      }
+    },
+    "詳細に表示中" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shown in Details"
+          }
+        }
+      }
+    },
+    "読み込めません" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Couldn't load"
+          }
+        }
+      }
+    },
+    "追加" : {
+      "comment" : "Open panel confirm button for adding reference images",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add"
+          }
+        }
+      }
+    },
+    "透明" : {
+      "comment" : "画像の背景のラベル",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transparent"
+          }
+        }
+      }
+    },
+    "選択" : {
+      "comment" : "Open panel confirm button for choosing the output folder",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose"
+          }
+        }
+      }
+    },
+    "閉じる" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Close"
+          }
+        }
+      }
+    },
+    "開く" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open"
+          }
+        }
+      }
+    },
+    "開始" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Started"
+          }
+        }
+      }
+    },
+    "開発用のビルドなので、自動アップデートは使いません（配布版でだけ動きます）。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Automatic updates are disabled in development builds (they work only in release builds)."
+          }
+        }
+      }
+    },
+    "（なし）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(None)"
+          }
+        }
+      }
+    },
+    "（まだ反映していない変更があります）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(There are unapplied changes)"
+          }
+        }
+      }
+    },
+    "（ログはまだありません）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(No log yet)"
+          }
+        }
+      }
+    },
+    "（出力なし）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(No output)"
+          }
+        }
+      }
+    },
+    "（実行が始まると作られます）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(Created when the run starts)"
+          }
+        }
+      }
+    },
+    "（実行が始まると組み立てます）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(Built when the run starts)"
+          }
+        }
+      }
+    },
+    "（左の列のいちばん上の「設定を表示」で変えられます）" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(Change it with “Show Settings” at the top of the left column)"
+          }
+        }
+      }
+    },
+    "（終了コード %lld）" : {
+      "comment" : "ログペイン: 実行したコマンドの終了コード",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(exit code %lld)"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

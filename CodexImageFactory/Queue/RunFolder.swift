@@ -154,7 +154,7 @@ enum RunFolder {
 
     // MARK: - 出力フォルダを作れなかったジョブの記録
 
-    /// 出力フォルダを作れなかったジョブの記録を置く場所（`~/Library/Application Support/ImageFactory/failed/`）。
+    /// 出力フォルダを作れなかったジョブの記録を置く場所（`~/Library/Application Support/CodexImageFactory/failed/`）。
     /// 中身は普通のジョブのフォルダと同じ形（run.json と prompt.txt）。`HistoryStore.loadAll` が走査する。
     static var defaultFailedRecordsDirectory: URL {
         PathUtil.applicationSupportDirectory.appendingPathComponent(failedRecordsDirectoryName, isDirectory: true)
@@ -265,13 +265,13 @@ enum RunFolderError: Error, Equatable, LocalizedError {
     var errorDescription: String? {
         switch self {
         case .inUse(let path):
-            "実行中のジョブのフォルダなので消しませんでした: \(path)"
+            String(localized: "実行中のジョブのフォルダなので消しませんでした: \(path)")
         case .symlinkedFolder(let path):
-            "フォルダがシンボリックリンクなので、リンク先のファイルは消しませんでした: \(path)"
+            String(localized: "フォルダがシンボリックリンクなので、リンク先のファイルは消しませんでした: \(path)")
         case .notAFolder(let path):
-            "フォルダではないので消しませんでした: \(path)"
+            String(localized: "フォルダではないので消しませんでした: \(path)")
         case .unreachable(let path):
-            "フォルダを調べられないので消しませんでした: \(path)"
+            String(localized: "フォルダを調べられないので消しませんでした: \(path)")
         }
     }
 }

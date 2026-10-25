@@ -17,19 +17,19 @@ enum ReferenceImageValidator {
         var message: String {
             switch self {
             case .empty:
-                "パスを入力してください。"
+                String(localized: "パスを入力してください。")
             case .notAbsolute(let path):
-                "「/」か「~」から始まるパスを入力してください: \(path)"
+                String(localized: "「/」か「~」から始まるパスを入力してください: \(path)")
             case .notFound(let path):
-                "ファイルが見つかりません: \(path)"
+                String(localized: "ファイルが見つかりません: \(path)")
             case .isDirectory(let path):
-                "フォルダは追加できません。画像ファイルを指定してください: \(path)"
+                String(localized: "フォルダは追加できません。画像ファイルを指定してください: \(path)")
             case .notImage(let path):
-                "画像ファイル（png / jpg / jpeg / webp）だけを追加できます: \(path)"
+                String(localized: "画像ファイル（png / jpg / jpeg / webp）だけを追加できます: \(path)")
             case .duplicate(let path):
-                "すでに追加されています: \(path)"
+                String(localized: "すでに追加されています: \(path)")
             case .limitReached:
-                "参照画像は最大 \(ReferenceImageLimit.max) 枚までです。"
+                String(localized: "参照画像は最大 \(ReferenceImageLimit.max) 枚までです。")
             }
         }
     }

@@ -95,7 +95,7 @@ enum CodexEnvironment {
         guard !path.isEmpty else {
             return LoginStatus(
                 loggedIn: false,
-                output: "codex が見つかりません。設定で codex のパスを指定してください。",
+                output: String(localized: "codex が見つかりません。設定で codex のパスを指定してください。"),
                 exitCode: nil
             )
         }
@@ -111,7 +111,7 @@ enum CodexEnvironment {
         case .failure(.launchFailed(let reason)):
             return LoginStatus(
                 loggedIn: false,
-                output: "codex を起動できませんでした（\(path)）。設定で codex のパスを確認してください。\n\(reason)",
+                output: String(localized: "codex を起動できませんでした（\(path)）。設定で codex のパスを確認してください。\n\(reason)"),
                 exitCode: nil
             )
         case .success(let output):
@@ -119,7 +119,7 @@ enum CodexEnvironment {
             if output.timedOut || output.cancelled {
                 return LoginStatus(
                     loggedIn: false,
-                    output: "codex login status が \(Int(loginStatusTimeout)) 秒以内に終わりませんでした。\n\(text)",
+                    output: String(localized: "codex login status が \(Int(loginStatusTimeout)) 秒以内に終わりませんでした。\n\(text)"),
                     exitCode: nil
                 )
             }

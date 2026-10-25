@@ -42,7 +42,7 @@ enum CodexRunnerError: Error, Equatable, LocalizedError {
 
     var errorDescription: String? {
         switch self {
-        case .launchFailed(let message): "codex を起動できませんでした: \(message)"
+        case .launchFailed(let message): String(localized: "codex を起動できませんでした: \(message)")
         }
     }
 }

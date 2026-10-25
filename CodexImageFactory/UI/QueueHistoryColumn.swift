@@ -112,28 +112,28 @@ private struct QueueRowView: View {
                     RowTag(text: "詳細に表示中")
                 }
             }
-            Text(UIDisplayFormat.firstLine(job.prompt))
+            Text(verbatim: UIDisplayFormat.firstLine(job.prompt))
                 .lineLimit(1)
                 .truncationMode(.tail)
                 .foregroundStyle(.secondary)
             HStack(spacing: 6) {
                 if job.status == .running {
                     Button("中止") { Task { await model.cancel(job.id) } }
-                        .axControl(label("中止", position), id: "queue.row.\(id).cancel")
+                        .axControl(label(String(localized: "中止"), position), id: "queue.row.\(id).cancel")
                 } else {
                     Button("上へ") { Task { await model.moveUp(job.id) } }
                         .disabled((waiting?.index ?? 0) == 0)
-                        .axControl(label("上へ", position), id: "queue.row.\(id).up")
+                        .axControl(label(String(localized: "上へ"), position), id: "queue.row.\(id).up")
                     Button("下へ") { Task { await model.moveDown(job.id) } }
                         .disabled(waiting.map { $0.index >= $0.count - 1 } ?? true)
-                        .axControl(label("下へ", position), id: "queue.row.\(id).down")
+                        .axControl(label(String(localized: "下へ"), position), id: "queue.row.\(id).down")
                     Button("編集") { model.beginEditing(job.id) }
-                        .axControl(label("編集", position), id: "queue.row.\(id).edit")
+                        .axControl(label(String(localized: "編集"), position), id: "queue.row.\(id).edit")
                     Button("削除") { Task { await model.removeQueued(job.id) } }
-                        .axControl(label("削除", position), id: "queue.row.\(id).delete")
+                        .axControl(label(String(localized: "削除"), position), id: "queue.row.\(id).delete")
                 }
                 Button("詳細") { model.select(job.id) }
-                    .axControl(label("詳細", position), id: "queue.row.\(id).detail")
+                    .axControl(label(String(localized: "詳細"), position), id: "queue.row.\(id).detail")
             }
             .controlSize(.small)
         }
@@ -147,6 +147,7 @@ private struct QueueRowView: View {
         .accessibilityIdentifier("queue.row.\(id)")
     }
 
+    /// `action` は翻訳済みの操作名（String(localized:) で渡す）。
     private func label(_ action: String, _ position: String) -> String {
         UIDisplayFormat.rowControlLabel(action, position: position, slug: job.slug)
     }
@@ -162,7 +163,7 @@ private struct HistoryPane: View {
             VStack(alignment: .leading, spacing: 6) {
                 HStack(alignment: .firstTextBaseline, spacing: 8) {
                     Text("履歴").font(.title3.weight(.semibold))
-                    Text(verbatim: "\(model.history.count) 件")
+                    Text("\(model.history.count) 件")
                         .monospacedDigit()
                         .foregroundStyle(.secondary)
                         .accessibilityIdentifier("history.count")
@@ -233,7 +234,7 @@ private struct HistoryRowView: View {
                     RowTag(text: "詳細に表示中")
                 }
             }
-            Text(UIDisplayFormat.firstLine(record.prompt))
+            Text(verbatim: UIDisplayFormat.firstLine(record.prompt))
                 .lineLimit(1)
                 .truncationMode(.tail)
                 .foregroundStyle(.secondary)
@@ -245,13 +246,13 @@ private struct HistoryRowView: View {
             }
             HStack(spacing: 6) {
                 Button("詳細") { model.select(record.id) }
-                    .axControl(label("詳細", position), id: "history.row.\(id).detail")
+                    .axControl(label(String(localized: "詳細"), position), id: "history.row.\(id).detail")
                 if canRetry {
                     Button("再試行") { Task { await model.retry(record) } }
-                        .axControl(label("再試行", position), id: "history.row.\(id).retry")
+                        .axControl(label(String(localized: "再試行"), position), id: "history.row.\(id).retry")
                 }
                 Button("削除") { Task { await model.deleteHistory(record) } }
-                    .axControl(label("履歴から削除（画像は残す）", position), id: "history.row.\(id).delete")
+                    .axControl(label(String(localized: "履歴から削除（画像は残す）"), position), id: "history.row.\(id).delete")
             }
             .controlSize(.small)
         }
@@ -265,6 +266,7 @@ private struct HistoryRowView: View {
         .accessibilityIdentifier("history.row.\(id)")
     }
 
+    /// `action` は翻訳済みの操作名（String(localized:) で渡す）。
     private func label(_ action: String, _ position: String) -> String {
         UIDisplayFormat.rowControlLabel(action, position: position, slug: record.slug)
     }

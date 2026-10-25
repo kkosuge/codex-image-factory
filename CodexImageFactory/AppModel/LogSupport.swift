@@ -10,8 +10,8 @@ enum LogDisplayMode: String, CaseIterable, Identifiable, Sendable {
 
     var label: String {
         switch self {
-        case .formatted: "整形"
-        case .raw: "生データ"
+        case .formatted: String(localized: "整形", comment: "ログ表示形式: 整形したログ")
+        case .raw: String(localized: "生データ", comment: "ログ表示形式: 加工していない生のログ")
         }
     }
 }
@@ -64,7 +64,7 @@ struct LogDisplayText: Equatable, Sendable {
     /// 省略したときの注記。
     var note: String? {
         guard omittedLines > 0 else { return nil }
-        return "古い \(omittedLines) 行は省略し、最後の \(shownLines) 行を表示しています。"
+        return String(localized: "古い \(omittedLines) 行は省略し、最後の \(shownLines) 行を表示しています。")
     }
 
     static func make(lines: [String], alreadyDropped: Int = 0, limit: Int = displayLimit) -> LogDisplayText {

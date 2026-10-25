@@ -6,7 +6,10 @@ enum UIDisplayFormat {
     static func historyLine(_ record: JobRecord, calendar: Calendar = .current) -> String {
         let elapsed = ElapsedFormatter.string(from: record.elapsed(now: record.finishedAt ?? record.startedAt ?? record.createdAt))
         let date = shortDate(record.startedAt ?? record.createdAt, calendar: calendar)
-        return "\(record.status.label) · \(record.slug) · \(elapsed) · \(record.images.count) 枚 · \(date)"
+        return String(
+            localized: "\(record.status.label) · \(record.slug) · \(elapsed) · \(record.images.count) 枚 · \(date)",
+            comment: "履歴の 1 行: 状態 · スラッグ · 経過時間 · 画像の枚数 · 開始日時"
+        )
     }
 
     /// 「10/24 15:30」
@@ -27,7 +30,7 @@ enum UIDisplayFormat {
 
     /// 行の位置（0 始まりの番号から「3 番目」）。
     static func ordinal(_ index: Int) -> String {
-        "\(index + 1) 番目"
+        String(localized: "\(index + 1) 番目", comment: "行の位置（1 始まりの順番）")
     }
 
     /// キューの行の位置。実行中の行から順に、ペイン全体で通し番号にする。例: 「2 番目」
@@ -37,13 +40,13 @@ enum UIDisplayFormat {
 
     /// 履歴の行の位置（新しい順）。キューの行と見分けるため「履歴」を付ける。例: 「履歴 3 番目」
     static func historyPosition(_ index: Int) -> String {
-        "履歴 \(ordinal(index))"
+        String(localized: "履歴 \(ordinal(index))", comment: "履歴の行の位置。引数は「3 番目」などの順番")
     }
 
     /// 行の操作ボタンの AX ラベル。スラッグが同じ行があっても見分けられるよう位置を入れる。
     /// 例: 「削除: 2 番目 kina-mascot」「再試行: 履歴 3 番目 kina-mascot」
     static func rowControlLabel(_ action: String, position: String, slug: String) -> String {
-        "\(action): \(position) \(slug)"
+        String(localized: "\(action): \(position) \(slug)", comment: "行の操作ボタンの AX ラベル: 操作名: 位置 スラッグ")
     }
 
     /// 空でない最初の行。

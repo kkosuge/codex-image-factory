@@ -1,0 +1,35 @@
+# push と pull request のたびにテストを流す（本物の codex は使わない）。
+name: CI
+
+on:
+  push:
+    branches: ["**"]
+    tags-ignore: ["**"]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: macos-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+      - name: Xcode を選ぶ
+        run: ./scripts/ci/select-xcode.sh
+        env:
+          XCODE_VERSION: ${{ vars.XCODE_VERSION }}
+      - name: テスト
+        run: |
+          xcodebuild -project CodexImageFactory.xcodeproj -scheme CodexImageFactory \
+            -destination 'platform=macOS' -derivedDataPath build/DerivedData test
+      - name: Release ビルド（署名なし）
+        run: |
+          xcodebuild -project CodexImageFactory.xcodeproj -scheme CodexImageFactory \
+            -configuration Release -destination 'generic/platform=macOS' \
+            -derivedDataPath build/DerivedData build

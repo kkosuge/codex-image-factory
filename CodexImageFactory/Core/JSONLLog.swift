@@ -22,7 +22,7 @@ enum JSONLLog {
             if let command = item["command"] as? String {
                 var s = "\(header) $ \(truncate(command, maxTextLength))"
                 if let code = item["exit_code"] as? Int {
-                    s += "（終了コード \(code)）"
+                    s += String(localized: "（終了コード \(code)）", comment: "ログペイン: 実行したコマンドの終了コード")
                 }
                 if let output = item["aggregated_output"] as? String, !output.isEmpty, type != "item.started" {
                     s += "\n    " + truncate(output.trimmingCharacters(in: .whitespacesAndNewlines), maxOutputLength)
@@ -42,7 +42,7 @@ enum JSONLLog {
         if let usage = obj["usage"] as? [String: Any] {
             let input = usage["input_tokens"].map { "\($0)" } ?? "?"
             let output = usage["output_tokens"].map { "\($0)" } ?? "?"
-            return "[\(type)] 入力トークン \(input) / 出力トークン \(output)"
+            return String(localized: "[\(type)] 入力トークン \(input) / 出力トークン \(output)", comment: "ログペイン: 最初の %@ は JSONL のイベント種別（turn.completed など）、残りはトークン数")
         }
         if let message = obj["message"] as? String {
             return "[\(type)] \(truncate(message, maxTextLength))"
@@ -74,7 +74,7 @@ enum JSONLLog {
 
     static func truncate(_ s: String, _ limit: Int) -> String {
         guard s.count > limit else { return s }
-        return String(s.prefix(limit)) + "…（\(s.count - limit) 文字省略）"
+        return String(s.prefix(limit)) + String(localized: "…（\(s.count - limit) 文字省略）", comment: "長い文字列を切ったときに末尾に付ける。数字は省略した文字数")
     }
 
     private static func compact(_ value: Any) -> String {

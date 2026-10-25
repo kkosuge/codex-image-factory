@@ -11,7 +11,7 @@ enum ReasoningEffort: String, Codable, Sendable, CaseIterable, Identifiable {
 
     var label: String {
         switch self {
-        case .default: "既定"
+        case .default: String(localized: "既定", comment: "推論の強さ: codex の既定値を使う")
         case .low: "low"
         case .medium: "medium"
         case .high: "high"
@@ -44,11 +44,39 @@ struct AppSettings: Codable, Sendable, Equatable {
 
     static let defaultOutputDirectory = "~/Pictures/CodexImages"
 
-    static let defaultInstructionTemplate =
+    /// Codex に送る固定の指示文の既定値（AI モデルへの指示）。`{…}` の置き換え用の目印は訳さずにそのまま残す。
+    static let defaultInstructionTemplate = String(
+        localized: """
+            画像生成ツールを使って {count} 枚生成し、PNG としてカレントディレクトリに {filenames} の名前で保存すること。\
+            サイズは{size}。{background}\
+            ファイルを保存したら、最後に保存したファイル名を 1 行 1 ファイルで列挙すること。\
+            コードの変更やその他のファイル作成はしないこと。
+            """,
+        comment: "Codex（AI モデル）に送る指示文の既定値。{count} {filenames} {size} {background} は置き換え用の目印なので訳さずそのまま残す。{size} には縦横比の文言、{background} には背景の文（空のこともある）が入る。"
+    )
+
+    /// 既定の指示文の元の文（日本語。Localizable.xcstrings のキー）。上の String(localized:) の文と同じにしておく。
+    static let defaultInstructionTemplateSource =
         "画像生成ツールを使って {count} 枚生成し、PNG としてカレントディレクトリに {filenames} の名前で保存すること。"
         + "サイズは{size}。{background}"
         + "ファイルを保存したら、最後に保存したファイル名を 1 行 1 ファイルで列挙すること。"
         + "コードの変更やその他のファイル作成はしないこと。"
+
+    /// どれかの言語の既定の指示文か。既定のままなら空で保存し、言語を変えたときにその言語の既定に切り替わるようにする。
+    static func isBuiltInInstructionTemplate(_ text: String, bundle: Bundle = .main) -> Bool {
+        if text == defaultInstructionTemplate || text == defaultInstructionTemplateSource {
+            return true
+        }
+        for language in bundle.localizations {
+            guard let path = bundle.path(forResource: language, ofType: "lproj"),
+                  let localized = Bundle(path: path) else { continue }
+            let value = localized.localizedString(forKey: defaultInstructionTemplateSource, value: nil, table: "Localizable")
+            if value == text {
+                return true
+            }
+        }
+        return false
+    }
 
     static let defaults = AppSettings(
         outputDirectory: defaultOutputDirectory,
@@ -102,10 +130,10 @@ enum PathUtil {
         return homeDirectory.appendingPathComponent(".codex", isDirectory: true)
     }
 
-    /// `~/Library/Application Support/ImageFactory/`
+    /// `~/Library/Application Support/CodexImageFactory/`
     static var applicationSupportDirectory: URL {
         let base = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first
             ?? homeDirectory.appendingPathComponent("Library/Application Support", isDirectory: true)
-        return base.appendingPathComponent("ImageFactory", isDirectory: true)
+        return base.appendingPathComponent("CodexImageFactory", isDirectory: true)
     }
 }

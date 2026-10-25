@@ -10,7 +10,7 @@ struct BannerStack: View {
             if let notice = model.rateLimitNotice {
                 AppBanner(
                     tone: .warning,
-                    title: "レート制限らしきエラーを検出したため、キューを一時停止しました。",
+                    title: String(localized: "レート制限らしきエラーを検出したため、キューを一時停止しました。"),
                     message: rateLimitMessage(notice),
                     identifier: "banner.rateLimit"
                 ) {
@@ -50,9 +50,10 @@ struct BannerStack: View {
         case .missing:
             AppBanner(
                 tone: .error,
-                title: "codex が見つかりません。",
-                message: "Codex CLI をインストールするか（例: npm install -g @openai/codex、mise use -g codex）、"
-                    + "「設定」の「codex のパス」に codex の絶対パスを入力してください。インストールしたら「再確認」を押してください。",
+                title: String(localized: "codex が見つかりません。"),
+                message: String(
+                    localized: "Codex CLI をインストールするか（例: npm install -g @openai/codex、mise use -g codex）、「設定」の「codex のパス」に codex の絶対パスを入力してください。インストールしたら「再確認」を押してください。"
+                ),
                 identifier: "banner.codexMissing"
             ) {
                 codexBannerButtons(prefix: "banner.codexMissing")
@@ -60,8 +61,8 @@ struct BannerStack: View {
         case .invalidPath(let path):
             AppBanner(
                 tone: .error,
-                title: "codex が見つかりません（指定したパスを実行できません）。",
-                message: "指定したパス: \(path)\n「設定」の「codex のパス」を直すか、空欄にして自動検出を使ってください。",
+                title: String(localized: "codex が見つかりません（指定したパスを実行できません）。"),
+                message: String(localized: "指定したパス: \(path)\n「設定」の「codex のパス」を直すか、空欄にして自動検出を使ってください。"),
                 identifier: "banner.codexMissing"
             ) {
                 codexBannerButtons(prefix: "banner.codexMissing")
@@ -69,10 +70,10 @@ struct BannerStack: View {
         case .launchFailed(let path, let output):
             AppBanner(
                 tone: .error,
-                title: "codex を起動できません（または応答がありません）。",
-                message: "codex login status を実行できませんでした（\(path)）。ログインの問題ではありません。\n"
-                    + "\(output.isEmpty ? "（出力なし）" : output)\n\n"
-                    + "「設定」の「codex のパス」を確かめるか、「codex を探し直す」を押してください。",
+                title: String(localized: "codex を起動できません（または応答がありません）。"),
+                message: String(localized: "codex login status を実行できませんでした（\(path)）。ログインの問題ではありません。")
+                    + "\n\(outputText(output))\n\n"
+                    + String(localized: "「設定」の「codex のパス」を確かめるか、「codex を探し直す」を押してください。"),
                 identifier: "banner.codexLaunch"
             ) {
                 Button("codex を探し直す") { model.rediscoverCodex() }
@@ -83,9 +84,10 @@ struct BannerStack: View {
         case .notLoggedIn(_, let output):
             AppBanner(
                 tone: .warning,
-                title: "Codex にログインしていません。",
-                message: "codex login status の結果:\n\(output.isEmpty ? "（出力なし）" : output)\n\n"
-                    + "ターミナルで codex login を実行してから「再確認」を押してください。",
+                title: String(localized: "Codex にログインしていません。"),
+                message: String(localized: "codex login status の結果:")
+                    + "\n\(outputText(output))\n\n"
+                    + String(localized: "ターミナルで codex login を実行してから「再確認」を押してください。"),
                 identifier: "banner.login"
             ) {
                 Button("ログイン状態を再確認") { model.recheckLogin() }
@@ -104,10 +106,18 @@ struct BannerStack: View {
             .axControl("設定を表示", id: "\(prefix).showSettings")
     }
 
+    /// codex の出力（翻訳しない）。空なら「（出力なし）」。
+    private func outputText(_ output: String) -> String {
+        output.isEmpty ? String(localized: "（出力なし）") : output
+    }
+
     private func rateLimitMessage(_ notice: RateLimitNotice) -> String {
-        let job = notice.slug.isEmpty ? "" : "ジョブ「\(notice.slug)」: "
+        let reason = notice.slug.isEmpty
+            ? notice.message
+            : String(localized: "ジョブ「\(notice.slug)」: \(notice.message)")
+        let advice = String(localized: "時間をおいてから「再開」を押してください（自動では再試行しません）。")
         let waiting = model.isResumePending ? "\n\(AppModel.resumeWaitingText)" : ""
-        return "\(job)\(notice.message)\n時間をおいてから「再開」を押してください（自動では再試行しません）。\(waiting)"
+        return "\(reason)\n\(advice)\(waiting)"
     }
 }
 

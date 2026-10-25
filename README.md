@@ -1,167 +1,186 @@
-# Image Factory for Codex
+# Codex Image Factory
 
-ChatGPT のサブスクリプションでログイン済みの Codex CLI（`codex exec`）を裏で呼び出して、画像アセットを続けてたくさん作る macOS アプリ。OpenAI の公式アプリではない。
-プロンプトをキューに積むと、並列数の範囲で `codex exec` を同時に走らせ、結果をフォルダに貯めて履歴に残す。OpenAI の API キーは使わない。
+English | [日本語](README.ja.md)
 
-- 人間はプロンプトを次々と書いて離席できる（並列実行・キューの永続化・終わったら通知）
-- AI エージェント（Claude のコンピュータ操作など）も、アクセシビリティ API 経由で同じ画面を操作できる（後述）
+A macOS app that turns the [Codex CLI](https://github.com/openai/codex) into an image-asset factory.
+Queue up prompts, and it runs `codex exec` in parallel, saves every image into its own folder, and keeps a full history of what was run.
+It uses your ChatGPT subscription through the Codex CLI — no OpenAI API key.
 
-要件は「Codex 画像生成アプリ 要件定義」、着手前に実機で確かめた Codex の挙動は [docs/VERIFICATION.md](docs/VERIFICATION.md) にまとめた。
+![Main window](docs/images/screenshot-main-en.png)
 
-## 必要なもの
+> **Unofficial.** Codex Image Factory is not made by or affiliated with OpenAI. Codex is a trademark of OpenAI.
 
-- macOS 15 以降、Xcode 16 以降（Xcode 27.1 / Swift 6.4 で確認）
-- Codex CLI（codex-cli 0.164.0 で確認）。ChatGPT でログイン済みであること
+## Why
+
+ChatGPT makes one image per conversation, so producing a batch of mascots, stickers, icons or backgrounds means juggling many chats.
+Codex Image Factory lets you write ten prompts, walk away, and come back to ten folders of PNGs — each with the exact command, prompt and log that produced it.
+
+It is also built to be driven by AI agents (for example, Claude's computer use) through the macOS Accessibility API, in the background.
+
+## Features
+
+- **Queue with parallel runs** — add prompts one at a time or several at once (one per paragraph). Runs up to 1–8 jobs at a time (default 3).
+- **Reorder, edit, delete, pause, resume, cancel** queued and running jobs. Failed jobs can be retried with one click; nothing is retried automatically.
+- **Rate-limit aware** — if Codex reports a rate limit, the queue pauses itself and tells you.
+- **Survives restarts** — waiting jobs are saved and come back paused when you relaunch.
+- **One folder per job** with `run.json`, `prompt.txt`, `stdout.jsonl`, `stderr.log`, the last message and the images. History can be rebuilt from the folders alone.
+- **Reuse, copy, reveal** — reuse a prompt, copy the exact `codex exec` command as one shell-ready line, or show the images in Finder.
+- **Options** — count (1/2/4), size (square/landscape/portrait), background (transparent/white/any), up to 4 reference images, a style preset, model and reasoning effort.
+- **Notifications** when the whole queue is done.
+- **English and Japanese** UI (follows your macOS language).
+- **Automatic updates** via [Sparkle](https://sparkle-project.org/), silently installed when you quit — no update windows.
+
+## Requirements
+
+- macOS 15 or later
+- The [Codex CLI](https://github.com/openai/codex), signed in with ChatGPT:
 
 ```bash
 codex login status
 ```
 
-`Logged in using ChatGPT` と出れば準備完了。出なければ、ターミナルで `codex login` を実行する。アプリはログインに関与しない。
+If it doesn't say `Logged in using ChatGPT`, run `codex login` in Terminal. The app never touches your credentials.
 
-## ビルドとインストール
+## Install
+
+Download `Codex-Image-Factory-<version>.zip` from [Releases](https://github.com/kkosuge/codex-image-factory/releases/latest), unzip it, and move **Codex Image Factory.app** to `/Applications`.
+Release builds are signed with Developer ID and notarized by Apple.
+
+The app checks for updates once a day, downloads new versions in the background and installs them when you quit.
+The status is shown as text under **Settings → Updates**.
+
+## Usage
+
+1. Describe the image in **Prompt** and press **Generate (Add to Queue)** (or ⌘↩). The field clears right away so you can write the next one.
+   Write several paragraphs separated by blank lines and press **Add Each Paragraph** to queue one job per paragraph.
+2. Optionally set the **File Name (Slug)**, **Count**, **Size**, **Background**, **Reference Images** and **Style Preset**.
+3. Jobs run from the **Queue**, up to the concurrency limit. Each row reads like `Running · robot-mascot · 0:42`. One image takes about a minute.
+4. Finished jobs move to **History**. Press **Details** to see the images, their full paths (as selectable text), the prompt sent to Codex, the command and the log.
+
+![Settings](docs/images/screenshot-settings-en.png)
+
+### Settings
+
+Open them with **Show Settings** at the top of the left column (or ⌘,).
+
+| Setting | Default | |
+| --- | --- | --- |
+| Output Folder | `~/Pictures/CodexImages` | Type a path or choose a folder. |
+| codex Path | auto-detect | Found through your login shell (`zsh -lc`, then `zsh -lic`). |
+| Concurrency | 3 | 1–8 jobs at a time. |
+| Timeout | 10 minutes | A job that runs longer is stopped and marked failed. |
+| Model | Codex default | Passed as `-m`. |
+| Reasoning Effort | Codex default | Passed as `-c model_reasoning_effort=…`. |
+| `--ephemeral` | off | Don't keep Codex session files. |
+| Style Preset | empty | Text prepended to every prompt. |
+| Fixed Instructions | built in | The instruction appended to every prompt. `{count}` `{filenames}` `{slug}` `{size}` `{background}` are replaced. Edit it if Codex changes its behavior. |
+
+Path-like settings are applied when you press Return, move to another field, or press **Apply Settings Changes**, so half-typed paths never reach running jobs.
+
+## Where things are saved
+
+```
+~/Pictures/CodexImages/
+  20261024-153012-kina-mascot/
+    run.json          ← the full record: command, prompt, exit code, image paths, …
+    prompt.txt        ← the exact prompt sent to Codex
+    stdout.jsonl      ← Codex's JSONL output, as is
+    stderr.log
+    last-message.md   ← Codex's final message
+    kina-mascot-01.png
+```
+
+| Location | Contents |
+| --- | --- |
+| `~/Library/Application Support/CodexImageFactory/queue.json` | Waiting jobs |
+| `~/Library/Application Support/CodexImageFactory/history.json` | Index of history folders |
+| `~/Library/Application Support/CodexImageFactory/failed/` | Records of jobs that couldn't write to the output folder |
+| UserDefaults (`company.kina.CodexImageFactory`) | Settings |
+
+## How it works
+
+For each job the app creates a folder and runs:
+
+```
+codex exec -C <job folder> -s workspace-write --skip-git-repo-check --json \
+  -o <job folder>/last-message.md [-m …] [-c …] [--ephemeral] [-i <reference> …] -- '<prompt>'
+```
+
+The prompt is the style preset, your prompt and the fixed instructions, joined in that order.
+New images are found by comparing the folder before and after the run. If Codex didn't copy an image into the folder, the app picks it up from `~/.codex/generated_images/<thread_id>/`.
+A job fails if `codex` exits with a non-zero code or no image was produced.
+Notes from testing the Codex CLI before building the app are in [docs/VERIFICATION.md](docs/VERIFICATION.md) (Japanese).
+
+## For AI agents
+
+The UI is designed to be operated through the Accessibility API without bringing the app to the front:
+
+- A short how-to is always shown at the top of the window.
+- No pull-down or pop-up menus, sheets, alerts, right-click-only or hover-only actions. Choices are radio buttons or segmented controls; file dialogs are only shortcuts next to text fields.
+- Every control has a readable label and a stable identifier. Row buttons include the row number and slug, e.g. `Delete: #2 kina-mascot`.
+- States are text (`Queued · kina-mascot · 0:42`), and generated image paths are selectable text.
+- The prompt field is a standard `TextEditor`.
+
+Useful identifiers:
+
+| Identifier | Control |
+| --- | --- |
+| `guide` | The how-to at the top |
+| `input.prompt` / `input.slug` | Prompt / file name (slug) |
+| `input.count` / `input.aspect` / `input.background` | Count / size / background |
+| `input.reference.pathField` / `input.reference.addPath` | Reference image path / add |
+| `input.submit` / `input.submitBatch` | Generate / add each paragraph |
+| `queue.pauseAll` / `queue.resumeAll` | Pause all / resume |
+| `queue.row.<id>` / `history.row.<id>` | Queue and history rows (`.detail`, `.cancel`, `.retry`, `.delete`, …) |
+| `detail.status` / `detail.imagePath.<n>` / `detail.command` | Status / image path / command |
+| `detail.copyCommand` / `detail.revealInFinder` / `detail.reusePrompt` | Copy command / show in Finder / reuse prompt |
+| `settings.toggle` / `settings.applyDrafts` | Show or hide settings / apply settings changes |
+
+## Build from source
+
+Requires Xcode 16 or later.
 
 ```bash
 xcodebuild -project CodexImageFactory.xcodeproj -scheme CodexImageFactory -configuration Release -derivedDataPath build/DerivedData build
 ```
 
 ```bash
-cp -R "build/DerivedData/Build/Products/Release/Image Factory for Codex.app" /Applications/
+cp -R "build/DerivedData/Build/Products/Release/Codex Image Factory.app" /Applications/
 ```
 
-Xcode で `CodexImageFactory.xcodeproj` を開いて実行してもよい。署名はローカル実行用（ad-hoc）。開発者アカウントで署名したい場合は、ターゲットの Signing でチームを選ぶ。
-App Sandbox はオフ（ユーザーの `codex` を起動し、`~/.codex` を読み、任意のフォルダに書くため）。App Store 配布はしない。
+Local builds are ad-hoc signed, and automatic updates are disabled in them. App Sandbox is off, because the app runs your `codex` binary, reads `~/.codex` and writes to any folder you choose.
+The only third-party dependency is Sparkle.
 
-## 使い方
-
-画面は 1 ウィンドウで、左に入力、中央にキュー（上）と履歴（下）、右に選んだジョブの詳細とログ。
-
-1. 左の「プロンプト」に書き、必要なら出力ファイル名（スラッグ）・枚数（1 / 2 / 4）・サイズ（正方形 / 横長 / 縦長）・背景（透明 / 白 / 指定なし）・参照画像（最大 4 枚）を選ぶ
-2. 「生成（キューに追加）」を押す。入力欄はすぐ空になるので、続けて次を書ける
-   - 空行で区切って複数書き「まとめて追加」を押すと、1 段落 1 ジョブで積まれる
-3. キューは先頭から順に、並列数（既定 3）まで同時に実行する
-   - 待機中のジョブは「上へ」「下へ」「編集」「削除」、実行中は「中止」（SIGINT → 3 秒後 SIGKILL）
-   - 「すべて一時停止」で新しい起動を止める（実行中のものは最後まで走る）。「再開」で続ける
-   - レート制限らしきエラーを見つけると、自動で一時停止してバナーで知らせる。自動リトライはしない
-4. 終わったジョブは履歴に移る。キューが空になったら macOS の通知を 1 回出す
-5. 履歴の行の「詳細」で、右に生成画像（パスは文字で表示）・プロンプト・コマンド・ログを出す
-   - 「このプロンプトを再利用」「コマンドをコピー」「Finder で表示」「再試行」（失敗・中止のとき）
-   - 履歴の「削除」は記録だけを消し、画像は残す
-
-アプリを終了しても待機中のジョブは残り、次に起動したときに一時停止状態で戻る（「再開」を押すと実行する）。
-実行中に終了した場合は、そのジョブを中止し、同じ内容の待機中ジョブとして先頭に戻す。
-
-アプリは 1 つだけ起動できる（2 つ目を開くと、すでに動いている方が前面に出る）。キューや履歴のファイルを取り合わないため。
-
-## 保存されるもの
-
-ジョブ 1 件 = フォルダ 1 つ。中身はフォルダ側を正とし、アプリの索引を消しても出力ディレクトリを走査して履歴を復元できる。
-
-```
-~/Pictures/CodexImages/            ← 出力ディレクトリ（設定で変更可）
-  20261024-153012-kina-mascot/
-    run.json          ← 実行の記録（コマンド・プロンプト・終了コード・画像のパスなど）
-    prompt.txt        ← Codex に渡した最終プロンプト
-    stdout.jsonl      ← codex の JSONL 出力そのまま
-    stderr.log
-    last-message.md   ← Codex の最終メッセージ
-    kina-mascot-01.png
-```
-
-| 場所 | 内容 |
-| --- | --- |
-| `~/Library/Application Support/ImageFactory/queue.json` | 待機中のジョブ |
-| `~/Library/Application Support/ImageFactory/history.json` | 履歴フォルダの索引 |
-| `~/Library/Application Support/ImageFactory/failed/` | 出力ディレクトリに書けずに失敗したジョブの記録（再試行用） |
-| UserDefaults（`company.kina.imagefactory`） | 設定 |
-
-## 設定
-
-左の列のいちばん上の「設定を表示」で開く（メニューの ⌘, でも開ける）。
-
-出力ディレクトリ・codex のパス・モデル・固定の指示文は、入力途中の値が実行中のキューに渡らないよう、
-Return を押すか、ほかの欄へ移るか、「設定の変更を反映」を押したときに確かめてから反映する（固定の指示文は打ち終えて 1 秒たっても反映する）。
-正しくない値は理由を赤字で出し、反映しない。
-
-| 項目 | 既定 | 内容 |
-| --- | --- | --- |
-| 出力ディレクトリ | `~/Pictures/CodexImages` | パスを直接入力できる（フォルダ選択は補助） |
-| codex のパス | 空（自動検出） | 空ならログインシェル（`zsh -lc` → `zsh -lic`）で探す |
-| 並列数 | 3 | 1〜8 |
-| タイムアウト | 10 分 | 超えたら中止と同じ手順で止めて失敗にする |
-| モデル | 空 | `-m` に渡す。空なら Codex の既定 |
-| 推論の強さ | 既定 | `-c model_reasoning_effort=...` |
-| `--ephemeral` | オフ | Codex のセッション履歴を残さない |
-| スタイルプリセット | 空 | プロンプトの先頭に付ける定型文 |
-| 固定の指示文 | 下記 | Codex の挙動が変わったら、再ビルドせずにここを直す |
-
-固定の指示文では `{count}` `{filenames}` `{slug}` `{size}` `{background}` が置き換わる。プロンプトは「スタイルプリセット → プロンプト本文 → 固定の指示文」の順に連結して渡す。
-
-実行するコマンドは次の形（履歴の「コマンドをコピー」で、シェルにそのまま貼れる 1 行が得られる）。
-
-```
-codex exec -C <ジョブのフォルダ> -s workspace-write --skip-git-repo-check --json \
-  -o <ジョブのフォルダ>/last-message.md [-m …] [-c …] [--ephemeral] [-i <参照画像> …] -- '<プロンプト>'
-```
-
-生成画像はフォルダの差分で見つける。Codex が作業フォルダにコピーしなかった場合は、`~/.codex/generated_images/<thread_id>/` から取り出して同じ命名規則で保存する。
-
-## AI エージェントから操作する
-
-アクセシビリティ API で、アプリを前面に出さずに操作できるように作ってある。
-
-- プルダウン・ポップアップメニュー・シート・アラート・右クリック専用・ホバー専用の操作は無い。選択肢はラジオボタンかセグメント
-- すべての操作部品に日本語のラベルと識別子がある。行ごとのボタンのラベルには行の番号とスラッグが入る（例: `削除: 2 番目 kina-mascot`）
-- キューと履歴の行は画面外にあってもアクセシビリティツリーに出る（履歴は新しい 300 件まで。「さらに表示」で増やす）
-- 設定の入力欄は「設定の変更を反映」ボタンでも反映できる（Return やフォーカス移動を送らなくてよい）
-- 状態は文字で出る（例: `待機中 · kina-mascot · 0:42`）。生成画像のパスは選択できる文字で出る
-- プロンプト欄は標準の `TextEditor`
-
-主な識別子:
-
-| 識別子 | 部品 |
-| --- | --- |
-| `input.prompt` / `input.slug` | プロンプト / スラッグ |
-| `input.count` / `input.aspect` / `input.background` | 枚数 / サイズ / 背景 |
-| `input.reference.pathField` / `input.reference.addPath` | 参照画像のパス入力 / 追加 |
-| `input.submit` / `input.submitBatch` | 生成（キューに追加）/ まとめて追加 |
-| `queue.pauseAll` / `queue.resumeAll` | すべて一時停止 / 再開 |
-| `queue.row.<id>` / `history.row.<id>` | キュー・履歴の行（`.detail` `.cancel` `.retry` `.delete` などが続く） |
-| `detail.status` / `detail.imagePath.<n>` / `detail.command` | 詳細の状態 / 画像のパス / コマンド |
-| `detail.copyCommand` / `detail.revealInFinder` / `detail.reusePrompt` | コマンドをコピー / Finder で表示 / 再利用 |
-| `settings.toggle` / `settings.applyDrafts` | 設定を表示・隠す / 設定の変更を反映 |
-| `history.showMore` | 履歴をさらに表示 |
-
-## テスト
+### Tests
 
 ```bash
-xcodebuild -project CodexImageFactory.xcodeproj -scheme CodexImageFactory -destination 'platform=macOS,arch=arm64' test
+xcodebuild -project CodexImageFactory.xcodeproj -scheme CodexImageFactory -destination 'platform=macOS' test
 ```
 
-- `codex` は `CodexRunning` プロトコルの裏にあり、テストでは PNG を書くだけのダミースクリプトに差し替える
-- `IntegrationTests`: 本物のプロセス実行・キュー・実行部品をダミー codex でつなぎ、5 件を並列数 3 で消化する受け入れ条件などをなぞる
-- `UIAuditTests`: 画面を画面外で描画してアクセシビリティツリーを確かめ、UI のソースからメニュー・シートなどの禁止部品と識別子の付け忘れを探す
-- `RealCodexTests`: 本物の codex で 5 件を生成する受け入れテスト。サブスクリプションの枠を使うので、普段は飛ばす
+- `codex` sits behind a protocol; tests swap in a dummy script that writes a PNG.
+- `IntegrationTests` wire the real process runner, executor and queue to that dummy and run five jobs with concurrency 3.
+- `UIAuditTests` render the window off-screen and scan the UI sources for forbidden controls and missing identifiers.
+- `LocalizationTests` check that every string has an English translation with matching placeholders.
+- `RealCodexTests` generate real images with your Codex subscription and are skipped unless `CIF_REAL_CODEX=1`.
 
-```bash
-TEST_RUNNER_CIF_REAL_CODEX=1 TEST_RUNNER_CIF_REAL_OUTPUT_DIR=~/Pictures/CodexImages-test xcodebuild -project CodexImageFactory.xcodeproj -scheme CodexImageFactory -destination 'platform=macOS,arch=arm64' test -only-testing:CodexImageFactoryTests/RealCodexTests
-```
+### Localization
 
-## 構成
+Strings live in `CodexImageFactory/Localizable.xcstrings` (Japanese is the source language).
+Xcode updates the catalog when you build in the IDE; from the command line run `scripts/l10n/sync-strings.sh`.
 
-| フォルダ | 内容 |
+### Releasing
+
+Pushing a `v1.2.3` tag builds, signs, notarizes and publishes the release and the Sparkle appcast with GitHub Actions.
+See [docs/RELEASING.md](docs/RELEASING.md) (Japanese).
+
+## Project layout
+
+| Folder | |
 | --- | --- |
-| `Models/` | ジョブの記録（`JobRecord`）と設定（`AppSettings`） |
-| `Core/` | プロンプト組み立て・コマンド生成・シェルクォート・画像検出・JSONL の整形・レート制限の検出 |
-| `Process/` | `codex` の起動（行単位の出力・中止・タイムアウト）とパス・ログイン状態の確認 |
-| `Queue/` | キュー（actor）・1 ジョブの実行・フォルダと run.json・キューと履歴の保存 |
-| `AppModel/` | 画面の状態（`@MainActor @Observable`）と設定の保存・通知 |
-| `UI/` | SwiftUI の画面 |
-
-## 名前について
-
-アプリ名は「Image Factory for Codex」、Dock での表示名は「Image Factory」、バンドル ID は `company.kina.imagefactory`。
-OpenAI の公式アプリと誤解されないよう、名前の先頭に「Codex」を置かず「for Codex」としている（Codex は OpenAI の商標）。
-本アプリは OpenAI とは関係のない非公式のツール。
-
-リポジトリ・Xcode のターゲット・ソースのフォルダは、内部名として `CodexImageFactory` のまま。
+| `CodexImageFactory/Models` | Job record and settings |
+| `CodexImageFactory/Core` | Prompt building, command line, shell quoting, image detection, log formatting, rate-limit detection |
+| `CodexImageFactory/Process` | Running `codex` (line streaming, cancel, timeout), finding it, login status |
+| `CodexImageFactory/Queue` | The queue (an actor), running one job, job folders, saving the queue and history |
+| `CodexImageFactory/AppModel` | UI state, settings, notifications, updates |
+| `CodexImageFactory/UI` | SwiftUI views |
+| `scripts/` | Release and localization scripts |

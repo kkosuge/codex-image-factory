@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "AA0000000000000000000008"
-               BuildableName = "Image Factory for Codex.app"
+               BuildableName = "Codex Image Factory.app"
                BlueprintName = "CodexImageFactory"
                ReferencedContainer = "container:CodexImageFactory.xcodeproj">
             </BuildableReference>
@@ -24,6 +24,8 @@
    </BuildAction>
    <TestAction
       buildConfiguration = "Debug"
+      language = "ja"
+      region = "JP"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
@@ -56,7 +58,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "AA0000000000000000000008"
-            BuildableName = "Image Factory for Codex.app"
+            BuildableName = "Codex Image Factory.app"
             BlueprintName = "CodexImageFactory"
             ReferencedContainer = "container:CodexImageFactory.xcodeproj">
          </BuildableReference>
@@ -73,7 +75,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "AA0000000000000000000008"
-            BuildableName = "Image Factory for Codex.app"
+            BuildableName = "Codex Image Factory.app"
             BlueprintName = "CodexImageFactory"
             ReferencedContainer = "container:CodexImageFactory.xcodeproj">
          </BuildableReference>

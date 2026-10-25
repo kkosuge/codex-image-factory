@@ -33,7 +33,10 @@ struct SettingsStore {
         if let v = integer(Key.concurrency) { s.concurrency = v }
         if let v = integer(Key.timeoutSeconds) { s.timeoutSeconds = v }
         if let v = defaults.object(forKey: Key.stylePreset) as? String { s.stylePreset = v }
-        if let v = defaults.object(forKey: Key.instructionTemplate) as? String { s.instructionTemplate = v }
+        if let v = defaults.object(forKey: Key.instructionTemplate) as? String {
+            // 空・どれかの言語の既定値なら、今の言語の既定値を使う（normalized() が入れる）。
+            s.instructionTemplate = AppSettings.isBuiltInInstructionTemplate(v) ? "" : v
+        }
         if let v = defaults.object(forKey: Key.model) as? String { s.model = v }
         if let raw = defaults.object(forKey: Key.reasoningEffort) as? String,
            let effort = ReasoningEffort(rawValue: raw) {
@@ -52,7 +55,8 @@ struct SettingsStore {
         defaults.set(s.concurrency, forKey: Key.concurrency)
         defaults.set(s.timeoutSeconds, forKey: Key.timeoutSeconds)
         defaults.set(s.stylePreset, forKey: Key.stylePreset)
-        defaults.set(s.instructionTemplate, forKey: Key.instructionTemplate)
+        // 既定の指示文は空で保存する（言語を変えたら、その言語の既定値に切り替わる）。
+        defaults.set(AppSettings.isBuiltInInstructionTemplate(s.instructionTemplate) ? "" : s.instructionTemplate, forKey: Key.instructionTemplate)
         defaults.set(s.model, forKey: Key.model)
         defaults.set(s.reasoningEffort.rawValue, forKey: Key.reasoningEffort)
         defaults.set(s.useEphemeral, forKey: Key.useEphemeral)

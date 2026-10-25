@@ -254,18 +254,18 @@ final class ProcessSupportSession: Sendable {
         let path = spec.executableURL.path
         var isDirectory: ObjCBool = false
         guard !path.isEmpty, fm.fileExists(atPath: path, isDirectory: &isDirectory) else {
-            return "実行ファイルが見つかりません: \(path)"
+            return String(localized: "実行ファイルが見つかりません: \(path)")
         }
         if isDirectory.boolValue {
-            return "フォルダは実行できません: \(path)"
+            return String(localized: "フォルダは実行できません: \(path)")
         }
         guard fm.isExecutableFile(atPath: path) else {
-            return "実行権限がありません: \(path)"
+            return String(localized: "実行権限がありません: \(path)")
         }
         if let dir = spec.workingDirectory {
             var isDir: ObjCBool = false
             guard fm.fileExists(atPath: dir.path, isDirectory: &isDir), isDir.boolValue else {
-                return "作業フォルダがありません: \(dir.path)"
+                return String(localized: "作業フォルダがありません: \(dir.path)")
             }
         }
         return nil

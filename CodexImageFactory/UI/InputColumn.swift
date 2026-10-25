@@ -78,18 +78,24 @@ private struct SettingsToggleBar: View {
                 .fixedSize(horizontal: false, vertical: true)
                 .accessibilityIdentifier("settings.toggle.status")
             Spacer(minLength: 4)
-            Button(model.isSettingsVisible ? "設定を隠す" : "設定を表示") { model.toggleSettings() }
-                .axControl(model.isSettingsVisible ? "設定を隠す" : "設定を表示", id: "settings.toggle")
+            Button(toggleTitle) { model.toggleSettings() }
+                .axControl(toggleTitle, id: "settings.toggle")
         }
         .padding(.horizontal, 16)
         .padding(.vertical, 8)
         .frame(maxWidth: .infinity, alignment: .leading)
     }
 
+    private var toggleTitle: String {
+        model.isSettingsVisible ? String(localized: "設定を隠す") : String(localized: "設定を表示")
+    }
+
     private var statusText: String {
-        var text = model.isSettingsVisible ? "設定: 表示中（この列のいちばん下）" : "設定: 隠しています"
+        var text = model.isSettingsVisible
+            ? String(localized: "設定: 表示中（この列のいちばん下）")
+            : String(localized: "設定: 隠しています")
         if model.hasPendingSettingDrafts {
-            text += "（まだ反映していない変更があります）"
+            text += String(localized: "（まだ反映していない変更があります）")
         }
         return text
     }
@@ -128,7 +134,7 @@ private struct PromptInputFields: View {
                     FieldTitle("枚数").gridColumnAlignment(.trailing)
                     Picker("枚数", selection: $model.draft.count) {
                         ForEach(ImageCount.choices, id: \.self) { n in
-                            Text(verbatim: "\(n) 枚").tag(n)
+                            Text("\(n) 枚").tag(n)
                         }
                     }
                     .pickerStyle(.radioGroup)
@@ -183,7 +189,7 @@ private struct ReferenceImageFields: View {
                 .disabled(isFull)
                 .axControl("参照画像のファイルを選択", id: "input.reference.choose")
                 Spacer()
-                Text(verbatim: "\(model.draft.referenceImages.count) / \(ReferenceImageLimit.max) 枚")
+                Text("\(model.draft.referenceImages.count) / \(ReferenceImageLimit.max) 枚")
                     .font(.callout)
                     .monospacedDigit()
                     .foregroundStyle(.secondary)
@@ -224,7 +230,7 @@ private struct ReferenceImageFields: View {
                             Text(verbatim: "\(index + 1).")
                                 .monospacedDigit()
                                 .foregroundStyle(.secondary)
-                            Text(path)
+                            Text(verbatim: path)
                                 .font(.system(.callout, design: .monospaced))
                                 .textSelection(.enabled)
                                 .fixedSize(horizontal: false, vertical: true)
@@ -249,7 +255,11 @@ private struct ReferenceImageFields: View {
 
     private var dropZone: some View {
         VStack(spacing: 4) {
-            Text(isDropTargeted ? "ここで離すと追加します" : "ここに画像ファイルをドラッグ＆ドロップ")
+            Text(
+                isDropTargeted
+                    ? String(localized: "ここで離すと追加します")
+                    : String(localized: "ここに画像ファイルをドラッグ＆ドロップ")
+            )
                 .font(.callout.weight(.medium))
             Text("png / jpg / jpeg / webp")
                 .font(.caption)
@@ -326,7 +336,11 @@ private struct SubmitBar: View {
                     .fixedSize(horizontal: false, vertical: true)
                     .accessibilityIdentifier("input.message")
             } else {
-                Text(model.isEditing ? "⌘↩ でも保存できます。" : "⌘↩ でも「生成（キューに追加）」できます。")
+                Text(
+                    model.isEditing
+                        ? String(localized: "⌘↩ でも保存できます。")
+                        : String(localized: "⌘↩ でも「生成（キューに追加）」できます。")
+                )
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }
@@ -337,6 +351,6 @@ private struct SubmitBar: View {
     }
 
     private var batchTitle: String {
-        "まとめて追加（\(model.draft.batchCount) 件）"
+        String(localized: "まとめて追加（\(model.draft.batchCount) 件）")
     }
 }

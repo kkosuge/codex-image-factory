@@ -44,9 +44,9 @@ struct JobExecutor: JobExecuting {
     /// codex が stdin を読みに行くときに出す行。stdin は /dev/null なので無害。要約には入れない。
     static let stdinNoticePrefix = "Reading additional input from stdin"
 
-    static let cancelledSummary = "中止しました"
-    static let missingCodexPathSummary = "codex のパスが設定されていません。設定の「codex のパス」を確認してください。"
-    static let noImagesSummary = "画像ファイルが見つかりませんでした"
+    static let cancelledSummary = String(localized: "中止しました")
+    static let missingCodexPathSummary = String(localized: "codex のパスが設定されていません。設定の「codex のパス」を確認してください。")
+    static let noImagesSummary = String(localized: "画像ファイルが見つかりませんでした")
 
     init(
         runner: any CodexRunning,
@@ -208,13 +208,13 @@ struct JobExecutor: JobExecuting {
             return finish(record, status: .cancelled, summary: Self.cancelledSummary, folder: folder)
         }
         if outcome.timedOut {
-            let reason = "タイムアウト（\(settings.timeoutSeconds) 秒）のため中止しました"
+            let reason = String(localized: "タイムアウト（\(settings.timeoutSeconds) 秒）のため中止しました")
             return finish(record, status: .failed, summary: Self.failureSummary(reason: reason, captured: captured), folder: folder)
         }
         if outcome.exitCode != 0 {
             let reason = outcome.terminatedBySignal
-                ? "codex がシグナル \(outcome.exitCode) で終了しました"
-                : "codex が終了コード \(outcome.exitCode) で終了しました"
+                ? String(localized: "codex がシグナル \(outcome.exitCode) で終了しました")
+                : String(localized: "codex が終了コード \(outcome.exitCode) で終了しました")
             return finish(record, status: .failed, summary: Self.failureSummary(reason: reason, captured: captured), folder: folder)
         }
         if record.images.isEmpty {
@@ -248,7 +248,7 @@ struct JobExecutor: JobExecuting {
         }
         var saved = r
         saved.outputDir = fallback.path
-        saved.errorSummary = summary + "\n\nこの記録は次の場所に残しました: \(fallback.path)"
+        saved.errorSummary = summary + "\n\n" + String(localized: "この記録は次の場所に残しました: \(fallback.path)")
         try? Data(saved.fullPrompt.utf8).write(to: fallback.appendingPathComponent(RunFolder.promptFileName), options: .atomic)
         do {
             try RunFolder.writeRecord(saved, to: fallback)
@@ -261,15 +261,15 @@ struct JobExecutor: JobExecuting {
 
     /// 出力フォルダを作れなかったときの要約。出力ディレクトリと OS のエラーを入れる。
     static func folderFailureSummary(outputDirectory: URL, error: any Error) -> String {
-        var lines = ["出力フォルダを作れませんでした: \(outputDirectory.path)", error.localizedDescription]
+        var lines = [String(localized: "出力フォルダを作れませんでした: \(outputDirectory.path)"), error.localizedDescription]
         if let posix = posixError(in: error) {
-            lines.append("OS のエラー: \(String(cString: strerror(posix))) (errno \(posix))")
+            lines.append(String(localized: "OS のエラー: \(String(cString: strerror(posix))) (errno \(posix))"))
         }
         let ns = error as NSError
         if let path = ns.userInfo[NSFilePathErrorKey] as? String, path != outputDirectory.path {
-            lines.append("作れなかった場所: \(path)")
+            lines.append(String(localized: "作れなかった場所: \(path)"))
         }
-        lines.append("出力ディレクトリの設定と、ドライブがつながっているか・書き込めるかを確認してから「再試行」してください。")
+        lines.append(String(localized: "出力ディレクトリの設定と、ドライブがつながっているか・書き込めるかを確認してから「再試行」してください。"))
         return lines.joined(separator: "\n")
     }
 
@@ -293,11 +293,11 @@ struct JobExecutor: JobExecuting {
         }
         var isDir: ObjCBool = false
         if !fm.fileExists(atPath: codexPath, isDirectory: &isDir) || isDir.boolValue || !fm.isExecutableFile(atPath: codexPath) {
-            return "codex が見つかりません: \(codexPath)"
+            return String(localized: "codex が見つかりません: \(codexPath)")
         }
         let missing = references.filter { !fm.fileExists(atPath: $0) }
         if !missing.isEmpty {
-            return "参照画像が見つかりません:\n" + missing.joined(separator: "\n")
+            return String(localized: "参照画像が見つかりません:\n\(missing.joined(separator: "\n"))")
         }
         return nil
     }
@@ -306,11 +306,11 @@ struct JobExecutor: JobExecuting {
     static func failureSummary(reason: String, captured: JobExecutorCaptured) -> String {
         var parts = [reason]
         if let message = captured.lastErrorMessage?.trimmingCharacters(in: .whitespacesAndNewlines), !message.isEmpty {
-            parts.append("Codex のエラー: " + JSONLLog.truncate(message, 600))
+            parts.append(String(localized: "Codex のエラー: \(JSONLLog.truncate(message, 600))"))
         }
         let tail = captured.stderrTail.suffix(errorSummaryStderrLines)
         if !tail.isEmpty {
-            parts.append("stderr（末尾）:\n" + tail.map { JSONLLog.truncate($0, 300) }.joined(separator: "\n"))
+            parts.append(String(localized: "stderr（末尾）:\n\(tail.map { JSONLLog.truncate($0, 300) }.joined(separator: "\n"))"))
         }
         let summary = parts.joined(separator: "\n\n")
         guard summary.count > maxErrorSummaryLength else { return summary }

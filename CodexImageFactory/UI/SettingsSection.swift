@@ -14,8 +14,8 @@ struct SettingsSection: View {
                 }
             } else {
                 Text(
-                    "出力ディレクトリ・codex のパス・並列数・タイムアウトなどは、この列のいちばん上の「設定を表示」で開きます。"
-                        + (model.hasPendingSettingDrafts ? "まだ反映していない変更があります。" : "")
+                    String(localized: "出力ディレクトリ・codex のパス・並列数・タイムアウトなどは、この列のいちばん上の「設定を表示」で開きます。")
+                        + (model.hasPendingSettingDrafts ? String(localized: "まだ反映していない変更があります。") : "")
                 )
                 .font(.caption)
                 .foregroundStyle(.secondary)
@@ -49,6 +49,8 @@ private struct SettingsFields: View {
             executionOptions
             Divider()
             instructionTemplate
+            Divider()
+            UpdateSettings(model: model)
         }
         // ほかの欄へ移ったら、離れた欄の内容を確かめて反映する。
         .onChange(of: focus) { old, _ in
@@ -73,7 +75,7 @@ private struct SettingsFields: View {
     private var outputDirectory: some View {
         VStack(alignment: .leading, spacing: 6) {
             FieldTitle("出力ディレクトリ")
-            TextField("出力ディレクトリ", text: $model.outputDirectoryDraft, prompt: Text(AppSettings.defaultOutputDirectory))
+            TextField("出力ディレクトリ", text: $model.outputDirectoryDraft, prompt: Text(verbatim: AppSettings.defaultOutputDirectory))
                 .textFieldStyle(.roundedBorder)
                 .labelsHidden()
                 .focused($focus, equals: .outputDirectory)
@@ -109,7 +111,7 @@ private struct SettingsFields: View {
             TextField(
                 "codex のパス",
                 text: $model.codexPathDraft,
-                prompt: Text(model.detectedCodexPath ?? "空欄なら自動検出したパスを使います")
+                prompt: model.detectedCodexPath.map { Text(verbatim: $0) } ?? Text("空欄なら自動検出したパスを使います")
             )
             .textFieldStyle(.roundedBorder)
             .labelsHidden()
@@ -178,7 +180,7 @@ private struct SettingsFields: View {
                             .fixedSize(horizontal: false, vertical: true)
                             .accessibilityIdentifier("settings.timeoutMinutes.error")
                     } else {
-                        Text(verbatim: "現在の値: \(model.settings.timeoutSeconds) 秒")
+                        Text("現在の値: \(model.settings.timeoutSeconds) 秒")
                             .font(.caption)
                             .foregroundStyle(.secondary)
                             .accessibilityIdentifier("settings.timeoutMinutes.current")
@@ -233,8 +235,8 @@ private struct SettingsFields: View {
             .focused($focus, equals: .instructionTemplate)
             Text(
                 model.isInstructionTemplateDraftPending
-                    ? "まだ反映していません。入力が 1 秒止まるか、ほかの欄へ移ると反映します。"
-                    : "入力が 1 秒止まるか、ほかの欄へ移ると反映します。"
+                    ? String(localized: "まだ反映していません。入力が 1 秒止まるか、ほかの欄へ移ると反映します。")
+                    : String(localized: "入力が 1 秒止まるか、ほかの欄へ移ると反映します。")
             )
             .font(.caption)
             .foregroundStyle(.secondary)
@@ -249,9 +251,11 @@ private struct SettingsFields: View {
                     .axControl("固定の指示文を既定に戻す", id: "settings.instructionTemplate.reset")
             }
             Text(
-                "プロンプトの最後に付けます。置き換え: {count}（枚数）、{filenames}（`slug-01.png`、… の並び）、"
-                    + "{slug}（スラッグ）、{size}（正方形（1:1）など）、{background}（背景の文。指定なしなら空）。"
-                    + "空にすると既定の文を使います。"
+                String(
+                    localized: "プロンプトの最後に付けます。置き換え: {count}（枚数）、{filenames}（`slug-01.png`、… の並び）、{slug}（スラッグ）、{size}（正方形（1:1）など）、{background}（背景の文。指定なしなら空）。",
+                    comment: "{count} {filenames} {slug} {size} {background} are template placeholders typed by the user; keep them unchanged."
+                )
+                    + String(localized: "空にすると既定の文を使います。")
             )
             .font(.caption)
             .foregroundStyle(.secondary)
@@ -271,7 +275,11 @@ extension SettingsFields {
             }
             .disabled(!model.hasPendingSettingDrafts)
             .axControl("設定の変更を反映（出力ディレクトリ・codex のパス・モデル・固定の指示文）", id: "settings.applyDrafts")
-            Text(model.hasPendingSettingDrafts ? "まだ反映していない変更があります" : "変更はすべて反映済みです")
+            Text(
+                model.hasPendingSettingDrafts
+                    ? String(localized: "まだ反映していない変更があります")
+                    : String(localized: "変更はすべて反映済みです")
+            )
                 .font(.caption)
                 .foregroundStyle(.secondary)
                 .accessibilityIdentifier("settings.applyDrafts.status")

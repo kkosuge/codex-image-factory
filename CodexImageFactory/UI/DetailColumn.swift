@@ -179,7 +179,13 @@ private struct DetailInfoView: View {
                     .controlSize(.small)
                     .axControl("コマンドをコピー: \(job.slug)", id: "detail.copyCommand")
             }
-            Text(job.commandLine.isEmpty ? "（実行が始まると組み立てます）" : job.commandLine)
+            Group {
+                if job.commandLine.isEmpty {
+                    Text("（実行が始まると組み立てます）")
+                } else {
+                    Text(verbatim: job.commandLine)
+                }
+            }
                 .font(.system(.callout, design: .monospaced))
                 .foregroundStyle(job.commandLine.isEmpty ? .secondary : .primary)
                 .textSelection(.enabled)
@@ -224,7 +230,7 @@ private struct DetailInfoView: View {
             if let threadId = job.codexThreadId, !threadId.isEmpty {
                 GridRow {
                     FieldTitle("スレッド ID")
-                    Text(threadId)
+                    Text(verbatim: threadId)
                         .font(.system(.callout, design: .monospaced))
                         .textSelection(.enabled)
                         .accessibilityIdentifier("detail.threadId")
@@ -267,7 +273,7 @@ private struct DetailImageTile: View {
             .accessibilityIdentifier("detail.image.\(index)")
 
             VStack(alignment: .leading, spacing: 6) {
-                Text(path)
+                Text(verbatim: path)
                     .font(.system(.callout, design: .monospaced))
                     .textSelection(.enabled)
                     .fixedSize(horizontal: false, vertical: true)
@@ -362,12 +368,14 @@ private struct DetailLogPane: View {
 
     private var sourceText: String {
         if model.liveLog(for: job.id) != nil {
-            return job.status == .running ? "リアルタイム表示中" : "この起動中に受け取ったログ"
+            return job.status == .running
+                ? String(localized: "リアルタイム表示中")
+                : String(localized: "この起動中に受け取ったログ")
         }
         if job.status.isFinished {
-            return "stdout.jsonl / stderr.log から読み込み"
+            return String(localized: "stdout.jsonl / stderr.log から読み込み")
         }
-        return "まだ実行していません"
+        return String(localized: "まだ実行していません")
     }
 
     @ViewBuilder
@@ -419,7 +427,13 @@ private struct LogTextView: View {
                             .foregroundStyle(.secondary)
                             .accessibilityIdentifier("detail.log.note")
                     }
-                    Text(display.text.isEmpty ? "（ログはまだありません）" : display.text)
+                    Group {
+                        if display.text.isEmpty {
+                            Text("（ログはまだありません）")
+                        } else {
+                            Text(verbatim: display.text)
+                        }
+                    }
                         .font(.system(size: 11, design: .monospaced))
                         .textSelection(.enabled)
                         .fixedSize(horizontal: false, vertical: true)

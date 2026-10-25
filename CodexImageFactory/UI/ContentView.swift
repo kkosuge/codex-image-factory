@@ -9,6 +9,8 @@ struct ContentView: View {
 
     var body: some View {
         VStack(spacing: 0) {
+            // 初めて操作する人・AI エージェント向けの使い方。いつもいちばん上に出す。
+            AppGuide(model: model)
             BannerStack(model: model)
             HSplitView {
                 InputColumn(model: model)

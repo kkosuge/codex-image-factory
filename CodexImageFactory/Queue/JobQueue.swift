@@ -292,7 +292,7 @@ actor JobQueue {
         var record = result
         if !record.status.isFinished {
             record.status = .failed
-            record.errorSummary = record.errorSummary ?? "実行が途中で終わりました"
+            record.errorSummary = record.errorSummary ?? String(localized: "実行が途中で終わりました")
         }
         if record.finishedAt == nil {
             record.finishedAt = Date()
