@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+  <channel>
+    <title>Codex Image Factory</title>
+    <link>https://kkosuge.github.io/codex-image-factory/appcast.xml</link>
+    <description>Codex Image Factory の更新情報</description>
+    <language>ja</language>
+    <item>
+      <title>Codex Image Factory 1.0.0</title>
+      <pubDate>Sun, 25 Oct 2026 12:36:45 GMT</pubDate>
+      <sparkle:version>5</sparkle:version>
+      <sparkle:shortVersionString>1.0.0</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+      <link>https://github.com/kkosuge/codex-image-factory/releases/tag/v1.0.0</link>
+      <enclosure url="https://github.com/kkosuge/codex-image-factory/releases/download/v1.0.0/Codex-Image-Factory-1.0.0.zip" length="2157330" type="application/octet-stream" sparkle:edSignature="FAKqgVsMFpRe2T/1lNRm+ttNAwCHP62Ym5VPoz6fcGfMnQwZrgjGkQnzsaXjMz7P8lRDcEeEdTkaRZLxdOkTCw==" />
+    </item>
+  </channel>
+</rss>
