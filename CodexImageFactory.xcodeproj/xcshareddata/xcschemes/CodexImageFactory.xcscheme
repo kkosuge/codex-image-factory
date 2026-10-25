@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "AA0000000000000000000008"
-               BuildableName = "Codex Image Factory.app"
+               BuildableName = "Image Factory for Codex.app"
                BlueprintName = "CodexImageFactory"
                ReferencedContainer = "container:CodexImageFactory.xcodeproj">
             </BuildableReference>
@@ -56,7 +56,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "AA0000000000000000000008"
-            BuildableName = "Codex Image Factory.app"
+            BuildableName = "Image Factory for Codex.app"
             BlueprintName = "CodexImageFactory"
             ReferencedContainer = "container:CodexImageFactory.xcodeproj">
          </BuildableReference>
@@ -73,7 +73,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "AA0000000000000000000008"
-            BuildableName = "Codex Image Factory.app"
+            BuildableName = "Image Factory for Codex.app"
             BlueprintName = "CodexImageFactory"
             ReferencedContainer = "container:CodexImageFactory.xcodeproj">
          </BuildableReference>

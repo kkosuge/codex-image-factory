@@ -154,7 +154,7 @@ enum RunFolder {
 
     // MARK: - 出力フォルダを作れなかったジョブの記録
 
-    /// 出力フォルダを作れなかったジョブの記録を置く場所（`~/Library/Application Support/CodexImageFactory/failed/`）。
+    /// 出力フォルダを作れなかったジョブの記録を置く場所（`~/Library/Application Support/ImageFactory/failed/`）。
     /// 中身は普通のジョブのフォルダと同じ形（run.json と prompt.txt）。`HistoryStore.loadAll` が走査する。
     static var defaultFailedRecordsDirectory: URL {
         PathUtil.applicationSupportDirectory.appendingPathComponent(failedRecordsDirectoryName, isDirectory: true)

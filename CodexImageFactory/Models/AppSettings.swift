@@ -102,10 +102,10 @@ enum PathUtil {
         return homeDirectory.appendingPathComponent(".codex", isDirectory: true)
     }
 
-    /// `~/Library/Application Support/CodexImageFactory/`
+    /// `~/Library/Application Support/ImageFactory/`
     static var applicationSupportDirectory: URL {
         let base = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first
             ?? homeDirectory.appendingPathComponent("Library/Application Support", isDirectory: true)
-        return base.appendingPathComponent("CodexImageFactory", isDirectory: true)
+        return base.appendingPathComponent("ImageFactory", isDirectory: true)
     }
 }

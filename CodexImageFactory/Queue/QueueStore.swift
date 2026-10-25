@@ -1,6 +1,6 @@
 import Foundation
 
-/// 待機中ジョブの永続化（`~/Library/Application Support/CodexImageFactory/queue.json`）。
+/// 待機中ジョブの永続化（`~/Library/Application Support/ImageFactory/queue.json`）。
 struct QueueStore: Sendable {
     var fileURL: URL
 
@@ -37,7 +37,7 @@ struct QueueStore: Sendable {
             let data = try RunFolder.makeEncoder().encode(jobs)
             try data.write(to: fileURL, options: .atomic)
         } catch {
-            NSLog("CodexImageFactory: queue.json を保存できませんでした: %@", error.localizedDescription)
+            NSLog("ImageFactory: queue.json を保存できませんでした: %@", error.localizedDescription)
         }
     }
 }

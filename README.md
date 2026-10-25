@@ -1,6 +1,6 @@
-# Codex Image Factory
+# Image Factory for Codex
 
-ChatGPT のサブスクリプションでログイン済みの Codex CLI（`codex exec`）を裏で呼び出して、画像アセットを続けてたくさん作る macOS アプリ。
+ChatGPT のサブスクリプションでログイン済みの Codex CLI（`codex exec`）を裏で呼び出して、画像アセットを続けてたくさん作る macOS アプリ。OpenAI の公式アプリではない。
 プロンプトをキューに積むと、並列数の範囲で `codex exec` を同時に走らせ、結果をフォルダに貯めて履歴に残す。OpenAI の API キーは使わない。
 
 - 人間はプロンプトを次々と書いて離席できる（並列実行・キューの永続化・終わったら通知）
@@ -26,7 +26,7 @@ xcodebuild -project CodexImageFactory.xcodeproj -scheme CodexImageFactory -confi
 ```
 
 ```bash
-cp -R "build/DerivedData/Build/Products/Release/Codex Image Factory.app" /Applications/
+cp -R "build/DerivedData/Build/Products/Release/Image Factory for Codex.app" /Applications/
 ```
 
 Xcode で `CodexImageFactory.xcodeproj` を開いて実行してもよい。署名はローカル実行用（ad-hoc）。開発者アカウントで署名したい場合は、ターゲットの Signing でチームを選ぶ。
@@ -70,10 +70,10 @@ App Sandbox はオフ（ユーザーの `codex` を起動し、`~/.codex` を読
 
 | 場所 | 内容 |
 | --- | --- |
-| `~/Library/Application Support/CodexImageFactory/queue.json` | 待機中のジョブ |
-| `~/Library/Application Support/CodexImageFactory/history.json` | 履歴フォルダの索引 |
-| `~/Library/Application Support/CodexImageFactory/failed/` | 出力ディレクトリに書けずに失敗したジョブの記録（再試行用） |
-| UserDefaults（`company.kina.CodexImageFactory`） | 設定 |
+| `~/Library/Application Support/ImageFactory/queue.json` | 待機中のジョブ |
+| `~/Library/Application Support/ImageFactory/history.json` | 履歴フォルダの索引 |
+| `~/Library/Application Support/ImageFactory/failed/` | 出力ディレクトリに書けずに失敗したジョブの記録（再試行用） |
+| UserDefaults（`company.kina.imagefactory`） | 設定 |
 
 ## 設定
 
@@ -160,4 +160,8 @@ TEST_RUNNER_CIF_REAL_CODEX=1 TEST_RUNNER_CIF_REAL_OUTPUT_DIR=~/Pictures/CodexIma
 
 ## 名前について
 
-アプリ名は「Codex Image Factory」、Dock での表示名は「Image Factory」。公開配布する場合は「Image Factory for Codex」に改名する（Codex は OpenAI の商標のため）。
+アプリ名は「Image Factory for Codex」、Dock での表示名は「Image Factory」、バンドル ID は `company.kina.imagefactory`。
+OpenAI の公式アプリと誤解されないよう、名前の先頭に「Codex」を置かず「for Codex」としている（Codex は OpenAI の商標）。
+本アプリは OpenAI とは関係のない非公式のツール。
+
+リポジトリ・Xcode のターゲット・ソースのフォルダは、内部名として `CodexImageFactory` のまま。

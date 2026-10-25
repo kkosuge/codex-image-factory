@@ -11,7 +11,7 @@ import Foundation
 ///   呼び出し側は、自分のキューで実行中・待機中でないと確かめた記録にだけ true を渡すこと。
 /// - `delete` が記録ファイルを消すのは、フォルダの run.json がこのアプリの書いたもので、id が消す記録と同じときだけ。
 struct HistoryStore: Sendable {
-    /// `~/Library/Application Support/CodexImageFactory/history.json`（フォルダの絶対パスの配列）
+    /// `~/Library/Application Support/ImageFactory/history.json`（フォルダの絶対パスの配列）
     var indexURL: URL
     /// 出力フォルダを作れなかったジョブの記録の置き場所（`JobExecutor.failedRecordsDirectory` と同じ場所）。
     /// `loadAll` はここも走査する。nil なら走査しない。
@@ -256,7 +256,7 @@ struct HistoryStore: Sendable {
             encoder.outputFormatting = [.prettyPrinted, .withoutEscapingSlashes]
             try encoder.encode(paths).write(to: indexURL, options: .atomic)
         } catch {
-            NSLog("CodexImageFactory: history.json を保存できませんでした: %@", error.localizedDescription)
+            NSLog("ImageFactory: history.json を保存できませんでした: %@", error.localizedDescription)
         }
     }
 
