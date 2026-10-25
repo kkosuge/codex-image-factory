@@ -1,3 +1,5 @@
+<p align="center"><img src="docs/images/icon.png" width="160" height="160" alt="Codex Image Factory icon"></p>
+
 # Codex Image Factory
 
 English | [日本語](README.ja.md)
