@@ -40,26 +40,91 @@ struct FieldTitle: View {
 }
 
 /// 枠付きの標準 TextEditor。AX で文字を入れられるよう、中身は素の TextEditor のまま。
+/// 下端のつまみを上下にドラッグすると高さを変えられる。
 struct BorderedTextEditor: View {
     @Binding var text: String
     let label: LocalizedStringKey
     let identifier: String
     var height: CGFloat
-    var monospaced = false
+    var monospaced: Bool
+    var resizable: Bool
+
+    /// ドラッグで変えた高さ。nil のあいだは初期の height を使う。
+    @State private var resizedHeight: CGFloat?
+    /// ドラッグを始めたときの高さ。
+    @State private var dragStartHeight: CGFloat?
+
+    private static let minHeight: CGFloat = 60
+    private static let maxHeight: CGFloat = 1600
+    private static let handleHeight: CGFloat = 10
+
+    init(
+        text: Binding<String>,
+        label: LocalizedStringKey,
+        identifier: String,
+        height: CGFloat,
+        monospaced: Bool = false,
+        resizable: Bool = true
+    ) {
+        _text = text
+        self.label = label
+        self.identifier = identifier
+        self.height = height
+        self.monospaced = monospaced
+        self.resizable = resizable
+    }
+
+    private var currentHeight: CGFloat {
+        resizedHeight ?? height
+    }
 
     var body: some View {
-        TextEditor(text: $text)
-            .font(monospaced ? .system(.body, design: .monospaced) : .body)
-            .scrollContentBackground(.hidden)
-            .accessibilityLabel(Text(label))
-            .accessibilityIdentifier(identifier)
-            .padding(6)
-            .frame(height: height)
-            .background(Color(nsColor: .textBackgroundColor), in: RoundedRectangle(cornerRadius: 6))
-            .overlay(
-                RoundedRectangle(cornerRadius: 6)
-                    .strokeBorder(Color(nsColor: .separatorColor))
+        VStack(spacing: 0) {
+            TextEditor(text: $text)
+                .font(monospaced ? .system(.body, design: .monospaced) : .body)
+                .scrollContentBackground(.hidden)
+                .accessibilityLabel(Text(label))
+                .accessibilityIdentifier(identifier)
+                .padding([.horizontal, .top], 6)
+                .padding(.bottom, resizable ? 0 : 6)
+                .frame(maxHeight: .infinity)
+            if resizable {
+                resizeHandle
+            }
+        }
+        .frame(height: currentHeight)
+        .background(Color(nsColor: .textBackgroundColor), in: RoundedRectangle(cornerRadius: 6))
+        .overlay(
+            RoundedRectangle(cornerRadius: 6)
+                .strokeBorder(Color(nsColor: .separatorColor))
+        )
+    }
+
+    /// 下端のつまみ。ダブルクリックで初期の高さに戻す。
+    private var resizeHandle: some View {
+        Capsule()
+            .fill(Color(nsColor: .tertiaryLabelColor))
+            .frame(width: 36, height: 3)
+            .frame(maxWidth: .infinity)
+            .frame(height: Self.handleHeight)
+            .contentShape(Rectangle())
+            .pointerStyle(.rowResize)
+            .gesture(
+                // 欄自体が伸び縮みするので、動かない座標系で移動量を測る。
+                DragGesture(minimumDistance: 1, coordinateSpace: .global)
+                    .onChanged { value in
+                        let start = dragStartHeight ?? currentHeight
+                        dragStartHeight = start
+                        resizedHeight = min(max(start + value.translation.height, Self.minHeight), Self.maxHeight)
+                    }
+                    .onEnded { _ in
+                        dragStartHeight = nil
+                    }
             )
+            .onTapGesture(count: 2) {
+                resizedHeight = nil
+            }
+            .accessibilityHidden(true)
     }
 }
 
