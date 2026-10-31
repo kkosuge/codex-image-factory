@@ -6,6 +6,15 @@
     <description>Codex Image Factory の更新情報</description>
     <language>ja</language>
     <item>
+      <title>Codex Image Factory 1.0.2</title>
+      <pubDate>Sat, 31 Oct 2026 03:07:25 GMT</pubDate>
+      <sparkle:version>9</sparkle:version>
+      <sparkle:shortVersionString>1.0.2</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>15.0</sparkle:minimumSystemVersion>
+      <link>https://github.com/kkosuge/codex-image-factory/releases/tag/v1.0.2</link>
+      <enclosure url="https://github.com/kkosuge/codex-image-factory/releases/download/v1.0.2/Codex-Image-Factory-1.0.2.zip" length="5059820" type="application/octet-stream" sparkle:edSignature="yrwY2J4lvYyIShjGDX/MYeZ8bl/pl/plyE5MYryE0St5le5taHv+Frv/pn7Y3wV09M5aNAF4lqONxyQh80p4AA==" />
+    </item>
+    <item>
       <title>Codex Image Factory 1.0.1</title>
       <pubDate>Sun, 25 Oct 2026 13:08:07 GMT</pubDate>
       <sparkle:version>6</sparkle:version>
